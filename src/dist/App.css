@@ -36,4 +36,12 @@
   height: 4rem;
   cursor: pointer;
 }
-/*# sourceMappingURL=Navbar.css.map */
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: calc(5px + 0.5vmin);
+}
+/*# sourceMappingURL=App.css.map */

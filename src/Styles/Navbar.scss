@@ -1,0 +1,27 @@
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem;
+    background-color: antiquewhite;
+
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 3rem;
+    }
+
+    li {
+        list-style-type: none;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    img {
+        width: 4rem;
+        height: 4rem;
+        cursor: pointer;
+    }
+
+}
