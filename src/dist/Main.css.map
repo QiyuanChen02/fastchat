@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../Styles/Main.scss"
-    ],
-    "names": [],
-    "file": "Main.css"
-}
+{"version":3,"sourceRoot":"","sources":["../sass/base/_reset.scss","../sass/layouts/_navbar.scss"],"names":[],"mappings":"AAAA;AACA;AAAA;AAAA;EAGE;;;AAGF;AACA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;EAUE;;;AAGF;AACA;AAAA;EAEE;;;AAGF;AACA;EACE;;;AAGF;AACA;EACE;EACA;EACA;;;AAGF;AACA;EACE;;;AAGF;AACA;AAAA;EAEE;EACA;;;AAGF;AACA;AAAA;AAAA;AAAA;EAIE;;;AAGF;AACA;EACE;IACC;;;EAGD;AAAA;AAAA;IAGE;IACA;IACA;IACA;;;ACvEJ;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;;AAGJ;EACI;EACA;EACA","file":"main.css"}

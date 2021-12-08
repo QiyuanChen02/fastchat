@@ -1,8 +1,4 @@
-import React from "react";
-import './dist/App.css';
-
-import Navbar from "./Components/Navbar.js";
-import Main from "./Components/Main.js";
+import { Navbar, Main } from "./components/index.js";
 
 import firebase from "firebase/compat/app";
 import 'firebase/compat/firestore';
