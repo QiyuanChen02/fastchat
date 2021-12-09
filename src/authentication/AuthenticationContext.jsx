@@ -1,26 +1,30 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 
 const UserContext = React.createContext(false);
 const UpdateUserContext = React.createContext();
 
-export const getUserContext = () => {
+export const GetUserContext = () => {
     return useContext(UserContext);
 }
 
-export const getUserUpdateContext = () => {
+export const GetUserUpdateContext = () => {
     return useContext(UpdateUserContext);
 }
 
-const LoginProvider = ({ children }) => {
+const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+
+    const changeUserStatus = (newStatus) => {
+        setUser(newStatus);
+    }
 
     return (
         <UserContext.Provider value={user}>
-            <UserUpdateContext.Provider value={setUser}>
+            <UpdateUserContext.Provider value={changeUserStatus}>
                 {children}
-            </UserUpdateContext.Provider>
+            </UpdateUserContext.Provider>
         </UserContext.Provider>
     );
 }
 
-export default LoginProvider;
+export default UserProvider;

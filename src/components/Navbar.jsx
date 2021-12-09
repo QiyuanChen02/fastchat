@@ -1,9 +1,14 @@
 import logo from '../assets/clock.png'
+import { GetLoginModalUpdateContext } from '../authentication/LoginModalContext';
+import { GetSignupModalUpdateContext } from '../authentication/SignupModalContext';
 
 const Navbar = () => {
 
-    const loginModal = () => alert("login");
-    const signupModal = () => alert("signup");
+    const toggleLoginModal = GetLoginModalUpdateContext();
+    const toggleSignupModal = GetSignupModalUpdateContext();
+
+    const loginModal = () => toggleLoginModal();
+    const signupModal = () => toggleSignupModal();
     const toggleLightDarkMode = () => alert("toggled");
 
     //Add toggle light dark mode

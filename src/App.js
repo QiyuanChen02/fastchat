@@ -1,10 +1,13 @@
 import { Navbar, Main } from "./components/index.js";
 
-import firebase from "firebase/compat/app";
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
+import { initializeApp } from "firebase/app";
+import UserProvider from "./authentication/AuthenticationContext.jsx";
+import LoginModalProvider, { GetLoginModalContext } from "./authentication/LoginModalContext.jsx";
+import SignupModalProvider from "./authentication/SignupModalContext.jsx";
+import Login from "./authentication/Login.jsx";
+//Import something from firestore too
 
-firebase.initializeApp({
+const firebase = initializeApp({
   apiKey: "AIzaSyACBQxVSK5k4yt1sPDcy0ZAeXASDgmR0_A",
   authDomain: "qchen-chat.firebaseapp.com",
   projectId: "qchen-chat",
@@ -13,16 +16,20 @@ firebase.initializeApp({
   appId: "1:948407960054:web:1f0dcdd0ccf31741da07d7",
   measurementId: "G-42XSYPX1V3"
 });
-
-const auth = firebase.auth();
-const firestore = firebase.firestore();
+//const firestore = getFirestore();
 
 function App() {
+
   return (
-    <>
-      <Navbar />
-      <Main />
-    </>
+    <LoginModalProvider>
+      <SignupModalProvider>
+        <UserProvider>
+          <Navbar />
+          <Main />
+          <Login />
+        </UserProvider>
+      </SignupModalProvider>
+    </LoginModalProvider>
   )
 }
 
