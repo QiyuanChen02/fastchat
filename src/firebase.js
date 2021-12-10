@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 
 const firebase = initializeApp({
     apiKey: "AIzaSyACBQxVSK5k4yt1sPDcy0ZAeXASDgmR0_A",
@@ -19,5 +19,6 @@ export {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     signOut,
+    onAuthStateChanged,
     auth
 }

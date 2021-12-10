@@ -2,13 +2,11 @@ import { useState } from "react"
 
 import { signInWithEmailAndPassword, auth } from "../firebase.js";
 
-import { GetUserUpdateContext } from "../contexts/AuthenticationContext";
 import { GetLoginModalContext, GetLoginModalUpdateContext } from "../contexts/LoginModalContext";
 
 import { errorMessage } from "../helpers/helperfunctions";
-export default function Login() {
 
-    const changeUserStatus = GetUserUpdateContext();
+export default function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -16,9 +14,7 @@ export default function Login() {
 
     const logIn = async (email, password) => {
         try {
-            const res = await signInWithEmailAndPassword(auth, email, password);
-            changeUserStatus(res.user);
-            //Something about storing the user to a database here
+            signInWithEmailAndPassword(auth, email, password);
         } catch(e) {
             console.log("🚀 ~ file: Login.jsx ~ line 22 ~ logIn ~ e.code", e.code)
             setError(errorMessage(e.code));

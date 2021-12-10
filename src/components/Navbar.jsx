@@ -1,6 +1,6 @@
 import { signOut } from 'firebase/auth';
 import logo from '../assets/clock.png'
-import { GetUserContext, GetUserUpdateContext } from '../contexts/AuthenticationContext';
+import { GetUserContext } from '../contexts/AuthenticationContext';
 import { GetLoginModalUpdateContext } from '../contexts/LoginModalContext';
 import { GetSignupModalUpdateContext } from '../contexts/SignupModalContext';
 
@@ -11,13 +11,11 @@ const Navbar = () => {
     const toggleLoginModal = GetLoginModalUpdateContext();
     const toggleSignupModal = GetSignupModalUpdateContext();
     const user = GetUserContext();
-    const updateUser = GetUserUpdateContext();
 
     const toggleLightDarkMode = () => alert("toggled");
     
-    const logout = async () => {
-        await signOut(auth); //Not sure if this line is needed but maybe prevent problems with auth later on
-        updateUser(null);
+    const logout = () => {
+        signOut(auth);
     }
 
     return (
