@@ -39,7 +39,8 @@ body {
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
-  text-decoration-skip-ink: auto;
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
@@ -66,12 +67,23 @@ select {
   *,
 *::before,
 *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }
+.overlay {
+  opacity: 0.7;
+  position: fixed;
+  inset: 0;
+  background-color: #000000;
+  z-index: 5;
+  pointer-events: all;
+}
+
 .topbar {
   display: flex;
   align-items: center;
@@ -96,4 +108,21 @@ select {
   cursor: pointer;
 }
 
-/*# sourceMappingURL=main.css.map */
+.loginModal, .signupModal {
+  position: fixed;
+  width: 768px;
+  max-width: calc(100vw + 1px);
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: calc(100vh + 1px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  padding: 30px;
+  background-color: white;
+  pointer-events: all;
+  overflow-y: auto;
+  border-radius: 15px;
+}/*# sourceMappingURL=main.css.map */

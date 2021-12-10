@@ -2,8 +2,8 @@ import { useState } from "react"
 
 import { signInWithEmailAndPassword, auth } from "../firebase.js";
 
-import { GetUserUpdateContext } from "./AuthenticationContext";
-import { GetLoginModalContext } from "./LoginModalContext";
+import { GetUserUpdateContext } from "../contexts/AuthenticationContext";
+import { GetLoginModalContext, GetLoginModalUpdateContext } from "../contexts/LoginModalContext";
 
 export default function Login() {
 
@@ -22,8 +22,9 @@ export default function Login() {
         }
     }
 
-    const LoginModal = GetLoginModalContext();
-    if (LoginModal){
+    const loginModal = GetLoginModalContext();
+    const updateLogin = GetLoginModalUpdateContext();
+    if (loginModal){
         return (
             <>
                 <div className="loginModal">
@@ -31,7 +32,7 @@ export default function Login() {
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button onClick={() => logIn(email, password)}>Login In</button>
                 </div>
-                <div className="overlay"></div>
+                <div className="overlay" onClick={updateLogin}></div>
             </>
         )
     } else {

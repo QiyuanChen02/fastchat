@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "../firebase";
-import { GetSignupModalContext } from "./SignupModalContext";
+import { GetSignupModalContext, GetSignupModalUpdateContext } from "../contexts/SignupModalContext";
 
 export default function SignUp() {
 
@@ -17,9 +17,9 @@ export default function SignUp() {
         }
     }
 
-    const SignUpModal = GetSignupModalContext();
-    console.log("SingUpModal", SignUpModal)
-    if (SignUpModal){
+    const signUpModal = GetSignupModalContext();
+    const updateSignUpModal = GetSignupModalUpdateContext();
+    if (signUpModal){
         return (
             <>
                 <div className="signupModal">
@@ -27,7 +27,7 @@ export default function SignUp() {
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button onClick={() => signUp(email, password)}>Sign Up</button>
                 </div>
-                <div className="overlay"></div>
+                <div className="overlay" onClick={updateSignUpModal}></div>
             </>
         )
     } else {

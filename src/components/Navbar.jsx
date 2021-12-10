@@ -1,6 +1,6 @@
 import logo from '../assets/clock.png'
-import { GetLoginModalUpdateContext } from '../authentication/LoginModalContext';
-import { GetSignupModalUpdateContext } from '../authentication/SignupModalContext';
+import { GetLoginModalUpdateContext } from '../contexts/LoginModalContext';
+import { GetSignupModalUpdateContext } from '../contexts/SignupModalContext';
 
 const Navbar = () => {
 

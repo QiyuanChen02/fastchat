@@ -1,8 +1,8 @@
 import { Navbar, Main } from "./components/index.js";
 
-import UserProvider from "./authentication/AuthenticationContext.jsx";
-import LoginModalProvider from "./authentication/LoginModalContext.jsx";
-import SignupModalProvider from "./authentication/SignupModalContext.jsx";
+import UserProvider from "./contexts/AuthenticationContext.jsx";
+import LoginModalProvider from "./contexts/LoginModalContext.jsx";
+import SignupModalProvider from "./contexts/SignupModalContext.jsx";
 import Login from "./authentication/Login.jsx";
 import SignUp from "./authentication/Signup.jsx";
 //Import something from firestore too

@@ -1,0 +1,16 @@
+@mixin modal(){
+    position: fixed;
+    width: 768px;
+    max-width: calc(100vw + 1px);
+    height: fit-content;
+    max-height: calc(100vh + 1px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    padding: 30px;
+    background-color: white;
+    pointer-events: all;
+    overflow-y: auto;
+    border-radius: 15px;
+}

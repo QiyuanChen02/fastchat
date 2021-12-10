@@ -1,0 +1,5 @@
+@use "../components/modals" as *;
+
+.loginModal, .signupModal {
+    @include modal();
+}
