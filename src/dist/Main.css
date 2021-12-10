@@ -125,4 +125,27 @@ select {
   pointer-events: all;
   overflow-y: auto;
   border-radius: 15px;
+}
+.loginModal .close-modal, .signupModal .close-modal {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  text-align: center;
+  background-color: white;
+}
+.loginModal form, .signupModal form {
+  display: flex;
+  flex-direction: column;
+}
+.loginModal form label, .signupModal form label {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.loginModal form input, .signupModal form input {
+  padding: 8px;
+  font-size: 2rem;
+  border: 1px solid black;
 }/*# sourceMappingURL=main.css.map */

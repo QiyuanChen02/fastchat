@@ -1,4 +1,4 @@
-import Main from "./Main.jsx";
+import Landing from "./Landing.jsx";
 import Navbar from "./Navbar.jsx";
 
-export { Main, Navbar };
+export { Landing, Navbar };

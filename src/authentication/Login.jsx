@@ -11,6 +11,7 @@ export default function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const logIn = async (email, password) => {
         try {
@@ -18,21 +19,35 @@ export default function Login() {
             changeUserStatus(res.user);
             //Something about storing the user to a database here
         } catch(e) {
-            console.log(e.message);
+            setError(e.message);
         }
     }
 
+    const loginFormSubmit = e => {
+        e.preventDefault();
+        logIn(email, password);
+    }
+
     const loginModal = GetLoginModalContext();
-    const updateLogin = GetLoginModalUpdateContext();
+    const updateLoginModal = GetLoginModalUpdateContext();
     if (loginModal){
         return (
             <>
                 <div className="loginModal">
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <button onClick={() => logIn(email, password)}>Login In</button>
+                    <button className="close-modal" onClick={updateLoginModal}>&times;</button>
+                    <div className="form-header">
+                        <h3>Log in</h3>
+                    </div>
+                    <form onSubmit={loginFormSubmit}>
+                        <label htmlFor="email">Email: </label>
+                        <input type="text" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
+                        <label htmlFor="password">Password: </label>
+                        <input type="password" name="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
+                        <p>{error}</p>
+                        <button type="submit">Submit</button>
+                    </form>
                 </div>
-                <div className="overlay" onClick={updateLogin}></div>
+                <div className="overlay" onClick={updateLoginModal}></div>
             </>
         )
     } else {
