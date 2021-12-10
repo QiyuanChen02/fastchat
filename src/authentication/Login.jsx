@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword, auth } from "../firebase.js";
 import { GetUserUpdateContext } from "../contexts/AuthenticationContext";
 import { GetLoginModalContext, GetLoginModalUpdateContext } from "../contexts/LoginModalContext";
 
+import { errorMessage } from "../helpers/helperfunctions";
 export default function Login() {
 
     const changeUserStatus = GetUserUpdateContext();
@@ -19,7 +20,8 @@ export default function Login() {
             changeUserStatus(res.user);
             //Something about storing the user to a database here
         } catch(e) {
-            setError(e.message);
+            console.log("🚀 ~ file: Login.jsx ~ line 22 ~ logIn ~ e.code", e.code)
+            setError(errorMessage(e.code));
         }
     }
 

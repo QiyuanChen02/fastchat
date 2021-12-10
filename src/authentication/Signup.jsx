@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "../firebase";
 import { GetSignupModalContext, GetSignupModalUpdateContext } from "../contexts/SignupModalContext";
 
+import { errorMessage } from "../helpers/helperfunctions";
 export default function SignUp() {
 
     const [email, setEmail] = useState("");
@@ -14,7 +15,8 @@ export default function SignUp() {
             const res = await createUserWithEmailAndPassword(auth, email, password);
             alert("User created"); //Still need to add to database (maybe in another folder?)
         } catch (e){
-            setError(e.message);
+            console.log("🚀 ~ file: Signup.jsx ~ line 17 ~ signUp ~ e", e.code);
+            setError(errorMessage(e.code));
         }
     }
 

@@ -12,7 +12,9 @@ function App() {
   return (
     <>
       {user 
-        ? <Navbar />
+        ? <>
+            <Navbar />
+          </>
         : <>
             <Navbar />
             <Landing />
