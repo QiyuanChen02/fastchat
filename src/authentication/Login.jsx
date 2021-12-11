@@ -21,13 +21,15 @@ export default function Login() {
         }
     }
 
-    const loginFormSubmit = e => {
-        e.preventDefault();
-        logIn(email, password);
-    }
-
     const loginModal = GetLoginModalContext();
     const updateLoginModal = GetLoginModalUpdateContext();
+
+    const loginFormSubmit = e => {
+        e.preventDefault();
+        updateLoginModal();
+        logIn(email, password);
+    }
+    
     if (loginModal){
         return (
             <>

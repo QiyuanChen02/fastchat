@@ -1,3 +1,15 @@
+.page.Light {
+  --color-base:#fff;
+  --color-text:#000;
+  --theme: "light" ;
+}
+
+.page.Dark {
+  --color-base:#000;
+  --color-text:#fff;
+  --theme: "dark" ;
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -84,30 +96,6 @@ select {
   pointer-events: all;
 }
 
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 3rem;
-  background-color: antiquewhite;
-}
-.topbar ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 3rem;
-}
-.topbar li {
-  list-style-type: none;
-  font-size: 2rem;
-  cursor: pointer;
-}
-.topbar img {
-  width: 4rem;
-  height: 4rem;
-  cursor: pointer;
-}
-
 .loginModal, .signupModal {
   position: fixed;
   width: 768px;
@@ -148,4 +136,29 @@ select {
   padding: 8px;
   font-size: 2rem;
   border: 1px solid black;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem;
+  background-color: var(--color-base);
+  color: var(--color-text);
+}
+.topbar ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 3rem;
+}
+.topbar li {
+  list-style-type: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.topbar img {
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

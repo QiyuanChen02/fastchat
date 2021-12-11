@@ -1,9 +1,16 @@
+@use "../abstracts" as *;
+
+@function getColor($color-name){
+    @return var(--color-#{$color-name})
+}
+
 .topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 3rem;
-    background-color: antiquewhite;
+    background-color: getColor(base);
+    color: getColor(text);
 
     ul {
         display: flex;

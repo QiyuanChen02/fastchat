@@ -4,6 +4,8 @@ import { auth } from "../firebase";
 import { GetSignupModalContext, GetSignupModalUpdateContext } from "../contexts/SignupModalContext";
 
 import { errorMessage } from "../helpers/helperfunctions";
+
+import { addUser } from "../database/users";
 export default function SignUp() {
 
     const [email, setEmail] = useState("");
@@ -12,21 +14,23 @@ export default function SignUp() {
 
     const signUp = async (email, password) => {
         try {
-            const res = await createUserWithEmailAndPassword(auth, email, password);
-            alert("User created"); //Still need to add to database (maybe in another folder?)
+            const cred = await createUserWithEmailAndPassword(auth, email, password);
+            addUser(cred.user.uid); //Still need to add to database (maybe in another folder?)
         } catch (e){
             console.log("🚀 ~ file: Signup.jsx ~ line 17 ~ signUp ~ e", e.code);
             setError(errorMessage(e.code));
         }
     }
 
+    const signUpModal = GetSignupModalContext();
+    const updateSignUpModal = GetSignupModalUpdateContext();
+
     const signupFormSubmit = e => {
         e.preventDefault();
+        updateSignUpModal();
         signUp(email, password);
     } 
 
-    const signUpModal = GetSignupModalContext();
-    const updateSignUpModal = GetSignupModalUpdateContext();
     if (signUpModal){
         return (
             <>

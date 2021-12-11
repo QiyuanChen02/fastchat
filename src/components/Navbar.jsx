@@ -6,13 +6,15 @@ import { GetSignupModalUpdateContext } from '../contexts/SignupModalContext';
 
 import { auth } from "../firebase";
 
-const Navbar = () => {
+const Navbar = ({ theme, setTheme }) => {
 
     const toggleLoginModal = GetLoginModalUpdateContext();
     const toggleSignupModal = GetSignupModalUpdateContext();
     const user = GetUserContext();
 
-    const toggleLightDarkMode = () => alert("toggled");
+    const toggleLightDarkMode = () => {
+        theme === "Light" ? setTheme("Dark") : setTheme("Light");
+    };
     
     const logout = () => {
         signOut(auth);
@@ -28,7 +30,7 @@ const Navbar = () => {
                     {!user ? <li onClick={toggleLoginModal} tabIndex={0}>Login In</li> : null}
                     {!user ? <li onClick={toggleSignupModal} tabIndex={0}>Sign Up</li> : null}
                     {user ? <li onClick={logout} tabIndex={0}>Log Out</li> : null}
-                    <li onClick={toggleLightDarkMode} tabIndex={0}>Dark Mode</li>
+                    <li onClick={toggleLightDarkMode} tabIndex={0}>{`${theme}`} Mode</li>
                 </ul>
             </nav>
         </div>

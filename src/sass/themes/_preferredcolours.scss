@@ -1,0 +1,23 @@
+$colors:(
+    base: #fff,
+    text: #000,
+);
+
+$colors-dark:(
+    base: map-get($colors, text),
+    text: map-get($colors, base),
+);
+
+.page.Light {
+    @each $name, $color in $colors{
+        --color-#{$name}:#{$color};
+    }
+    --theme: 'light'
+}
+
+.page.Dark {
+    @each $name, $color in $colors-dark{
+        --color-#{$name}:#{$color};
+    }
+    --theme: 'dark'
+}

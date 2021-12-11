@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navbar, Landing } from "./components/index.js";
 
 import { GetUserContext } from "./contexts/AuthenticationContext.jsx";
@@ -9,20 +10,21 @@ function App() {
 
   const user = GetUserContext();
 
+  const [theme, setTheme] = useState("Light");
   return (
-    <>
+    <div className={`page ${theme}`}>
+      <Navbar theme={theme} setTheme={setTheme}/>
       {user 
         ? <>
-            <Navbar />
+            <h1>You have logged in</h1>
           </>
         : <>
-            <Navbar />
             <Landing />
             <Login />
             <SignUp />
           </>
       }
-    </>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './dist/Main.css';
-import Contexts from './contexts/index';
+import Contexts from './contexts/index.jsx';
 import App from './App';
 
 // import reportWebVitals from './reportWebVitals';
