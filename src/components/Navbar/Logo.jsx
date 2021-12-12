@@ -3,7 +3,7 @@ import React from 'react'
 function Logo() {
     return (
         <div className="logo">
-            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
             <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
             <path d="M2651 5004 c-69 -19 -108 -43 -161 -100 -136 -148 -114 -380 48 -499
             26 -19 64 -40 85 -47 l37 -11 0 -127 0 -127 -72 -18 c-233 -56 -514 -194 -723

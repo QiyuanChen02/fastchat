@@ -120,14 +120,14 @@ p {
 
 .page.Light {
   --color-base:#fff;
-  --color-text:#000;
-  --theme: "light" ;
+  --color-text:black;
+  --color-accent:#005C99;
 }
 
 .page.Dark {
-  --color-base:#000;
+  --color-base:black;
   --color-text:#fff;
-  --theme: "dark" ;
+  --color-accent:#009499;
 }
 
 svg {
@@ -164,15 +164,11 @@ h1, h2, h3 {
   position: fixed;
   width: 768px;
   max-width: calc(100vw + 1px);
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  max-height: calc(100vh + 1px);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  padding: 30px;
+  padding: var(--space-lg);
   background-color: white;
   pointer-events: all;
   overflow-y: auto;
@@ -201,6 +197,13 @@ h1, h2, h3 {
   font-size: 2rem;
   border: 1px solid black;
 }
+.loginModal form button, .signupModal form button {
+  display: block;
+  border: 0;
+  font-size: var(--text-md);
+  cursor: pointer;
+  background-color: var(--color-accent);
+}
 
 .topbar {
   display: flex;
@@ -218,11 +221,12 @@ h1, h2, h3 {
 }
 .topbar li {
   list-style-type: none;
+  display: block;
   font-size: 2rem;
   cursor: pointer;
 }
-.topbar img {
-  width: 4rem;
-  height: 4rem;
+.topbar svg {
   cursor: pointer;
+  width: 4em;
+  height: 4em;
 }/*# sourceMappingURL=main.css.map */

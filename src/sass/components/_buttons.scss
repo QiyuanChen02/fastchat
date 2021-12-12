@@ -1,0 +1,7 @@
+@mixin button($color){
+    display: block;
+    border: 0;
+    font-size: var(--text-md);
+    cursor: pointer;
+    background-color: $color;
+}

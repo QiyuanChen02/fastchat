@@ -2,30 +2,26 @@
 
 $colors:(
     base: #fff,
-    text: #000,
+    text: rgb(0, 0, 0),
+    accent: #005C99
 );
 
 $colors-dark:(
     base: map-get($colors, text),
     text: map-get($colors, base),
+    accent: #009499
 );
-
-@function getColor($color-name){
-    @return var(--color-#{$color-name})
-}
 
 .page.Light {
     @each $name, $color in $colors{
         --color-#{$name}:#{$color};
     }
-    --theme: 'light'
 }
 
 .page.Dark {
     @each $name, $color in $colors-dark{
         --color-#{$name}:#{$color};
     }
-    --theme: 'dark'
 }
 
 svg {

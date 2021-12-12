@@ -1,9 +1,5 @@
 @use "../abstracts" as *;
 
-@function getColor($color-name){
-    @return var(--color-#{$color-name})
-}
-
 .topbar {
     display: flex;
     align-items: center;
@@ -21,14 +17,15 @@
 
     li {
         list-style-type: none;
+        display: block;
         font-size: 2rem;
         cursor: pointer;
     }
 
-    img {
-        width: 4rem;
-        height: 4rem;
+    svg {
         cursor: pointer;
+        width: 4em;
+        height: 4em;
     }
 
 }

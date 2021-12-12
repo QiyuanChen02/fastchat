@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navbar, Landing } from "./components/index.js";
+import { Navbar, Landing, Footer } from "./components/index.js";
 
 import { GetUserContext } from "./contexts/AuthenticationContext.jsx";
 import Login from "./authentication/Login.jsx";
@@ -24,6 +24,7 @@ function App() {
             <SignUp />
           </>
       }
+      <Footer />
     </div>
   );
 };

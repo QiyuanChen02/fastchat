@@ -21,7 +21,7 @@ const Navbar = ({ theme, setTheme }) => {
     }
 
     return (
-        <div className="topbar">
+        <section className="topbar">
 
             <Logo />
             <nav>
@@ -32,7 +32,7 @@ const Navbar = ({ theme, setTheme }) => {
                     <li onClick={toggleLightDarkMode} tabIndex={0}>{`${theme}`} Mode</li>
                 </ul>
             </nav>
-        </div>
+        </section>
     );
 };
 
