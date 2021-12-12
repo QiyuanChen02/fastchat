@@ -1,0 +1,48 @@
+:root {
+    --font-primary: sans-serif;
+    --font-secondary: serif;
+
+    // Set base values
+    --text-base-size: 1em;
+    --text-scale-ratio: 1.2;
+
+    //Type scale
+    --text-xs: calc(1em / (var(--text-scale-ratio) * var(--text-scale-ratio)));
+    --text-sm: calc(1em / var(--text-scale-ratio));
+    --text-md: 1em;
+    --text-lg: calc(1em * var(--text-scale-ratio));
+    --text-xl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio));
+    --text-xxl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
+
+    //Line height
+    --heading-line-height: 1.2;
+    --body-line-height: 1.4;
+}
+
+body {
+    font-family: var(--font-primary), var(--font-secondary);
+}
+
+h1, .text--xxl {
+    font-size: var(--text-xxl);
+}
+
+h2, .text--xl {
+    font-size: var(--text-xl);
+}
+
+h3, .text--lg {
+    font-size: var(--text-lg);
+}
+
+p, .text--md {
+    font-size: var(--text-md);
+}
+
+h1, h2, h3 {
+    line-height: var(--heading-line-height);
+}
+
+p {
+    line-height: var(--body-line-height);
+}

@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 $colors:(
     base: #fff,
     text: #000,
@@ -7,6 +9,10 @@ $colors-dark:(
     base: map-get($colors, text),
     text: map-get($colors, base),
 );
+
+@function getColor($color-name){
+    @return var(--color-#{$color-name})
+}
 
 .page.Light {
     @each $name, $color in $colors{
@@ -20,4 +26,8 @@ $colors-dark:(
         --color-#{$name}:#{$color};
     }
     --theme: 'dark'
+}
+
+svg {
+    fill: getColor(text);
 }

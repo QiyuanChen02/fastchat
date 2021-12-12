@@ -14,7 +14,8 @@ export default function Login() {
 
     const logIn = async (email, password) => {
         try {
-            signInWithEmailAndPassword(auth, email, password);
+            await signInWithEmailAndPassword(auth, email, password);
+            updateLoginModal();
         } catch(e) {
             console.log("🚀 ~ file: Login.jsx ~ line 22 ~ logIn ~ e.code", e.code)
             setError(errorMessage(e.code));
@@ -26,7 +27,6 @@ export default function Login() {
 
     const loginFormSubmit = e => {
         e.preventDefault();
-        updateLoginModal();
         logIn(email, password);
     }
     

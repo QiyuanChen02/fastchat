@@ -1,10 +1,10 @@
 import { signOut } from 'firebase/auth';
-import logo from '../assets/clock.png'
-import { GetUserContext } from '../contexts/AuthenticationContext';
-import { GetLoginModalUpdateContext } from '../contexts/LoginModalContext';
-import { GetSignupModalUpdateContext } from '../contexts/SignupModalContext';
+import { GetUserContext } from '../../contexts/AuthenticationContext';
+import { GetLoginModalUpdateContext } from '../../contexts/LoginModalContext';
+import { GetSignupModalUpdateContext } from '../../contexts/SignupModalContext';
 
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
+import Logo from './Logo';
 
 const Navbar = ({ theme, setTheme }) => {
 
@@ -22,9 +22,8 @@ const Navbar = ({ theme, setTheme }) => {
 
     return (
         <div className="topbar">
-            <div className="logo">
-                <img src={logo} alt="logo"/>
-            </div>
+
+            <Logo />
             <nav>
                 <ul>
                     {!user ? <li onClick={toggleLoginModal} tabIndex={0}>Login In</li> : null}
