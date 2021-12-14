@@ -1,7 +1,7 @@
 function Main() {
     return (
         <div className="main">
-            <h1>Speed Chat</h1>
+            <h1>Landing page</h1>
         </div>
     )
 }

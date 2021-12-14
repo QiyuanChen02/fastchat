@@ -4,3 +4,9 @@
     justify-content: $justify;
     align-items: $align;
 }
+
+@mixin truncate() {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

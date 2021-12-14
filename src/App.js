@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Navbar, Landing, Footer } from "./components/index.js";
+import { Navbar, Landing, Info, Footer, MainChat } from "./components/index.js";
 
 import { GetUserContext } from "./contexts/AuthenticationContext.jsx";
 import Login from "./authentication/Login.jsx";
 import SignUp from "./authentication/Signup.jsx";
-//Import something from firestore too
 
 function App() {
 
@@ -16,10 +15,11 @@ function App() {
       <Navbar theme={theme} setTheme={setTheme}/>
       {user 
         ? <>
-            <h1>You have logged in</h1>
+            <MainChat />
           </>
         : <>
             <Landing />
+            <Info />
             <Login />
             <SignUp />
           </>

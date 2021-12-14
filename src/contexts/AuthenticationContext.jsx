@@ -12,9 +12,12 @@ const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        onAuthStateChanged(auth, user => {
+        const unsubscribe = onAuthStateChanged(auth, user => {
             setUser(user);
         });
+        return () => {
+            unsubscribe();
+        }
     }, []);
 
     return (

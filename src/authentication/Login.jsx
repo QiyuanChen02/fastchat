@@ -1,10 +1,11 @@
 import { useState } from "react"
 
-import { signInWithEmailAndPassword, auth } from "../firebase.js";
+import { auth } from "../firebase.js";
 
 import { GetLoginModalContext, GetLoginModalUpdateContext } from "../contexts/LoginModalContext";
 
 import { errorMessage } from "../helpers/helperfunctions";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function Login() {
 
