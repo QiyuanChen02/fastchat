@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, collection, query, where, limit, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 
 const addUser = (id, username) => {
@@ -9,28 +9,18 @@ const addUser = (id, username) => {
     });
 }
 
-// const getUserChatroom = async (id) => {
-//     const usersRef = doc(db, "users", id);
-//     const usersSnap = await getDoc(usersRef);
+const fetchChatFromUser = (uid, setChatroomId) => {
+    const chatroomRef = collection(db, "chatrooms");
+    const q = query(chatroomRef, where("members", "array-contains", uid), limit(1));
+    
+    const unsubscribe = onSnapshot(q, snapshot => {
+        snapshot.forEach(doc => setChatroomId(doc.id));
+    });
 
-//     if (usersSnap.exists()){
-//         return usersSnap.data().chatroom;
-//     } else {
-//         console.log("The user doesn't exist :(");
-//     }
-// }
-
-// //everytime the chatroom the user is connected to changes, we want 
-
-// //onSnapshot(doc(db, "users", user.uid), doc => doc.data().chatroom)
-// const q = query(collection(chatId, "messages"), orderBy("createdAt"), limit(25));
-// onSnapshot(q, snapshot => {
-//     const messages = [];
-//     snapshot.forEach(doc => {
-//         messages.push(doc.data());
-//     });
-// }
+    return () => unsubscribe();
+}   
 
 export {
-    addUser
+    addUser,
+    fetchChatFromUser
 }

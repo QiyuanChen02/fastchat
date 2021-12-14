@@ -1,8 +1,8 @@
-import { collection, limit, onSnapshot, orderBy, query, where, doc } from 'firebase/firestore';
-import { db } from "../../firebase";
 import React, { useState, useEffect } from 'react'
 import { GetUserContext } from '../../contexts/AuthenticationContext';
 import { auth } from '../../firebase';
+import { addMessage, fetchMessagesFromChat } from '../../database/messages';
+import { fetchChatFromUser } from '../../database/users';
 
 function MainChat() {
 
@@ -10,64 +10,45 @@ function MainChat() {
     //everytime the user changes, put a new snapshot that listens to the current user's chatroom
 
     const user = GetUserContext();
-    const [chatroomId, setChatroomId] = useState("ofwhhGEcwWpyBo877prs");
+    const [chatroomId, setChatroomId] = useState("ofwhhGEcwWpyBo877prs"); //temporary
     const [messages, setMessages] = useState([]);
+    const [formValue, setFormValue] = useState("");
 
-    //fetchGroupByUserID
+    //some stuff here needs to be async
     useEffect(() => {
-        const chatroomRef = collection(db, "chatrooms");
-        const q = query(chatroomRef, where("members", "array-contains", user.uid), limit(1));
-        const unsubscribe = onSnapshot(q, snapshot => {
-            snapshot.forEach(doc => setChatroomId(doc.id));
-        });
-
-        return () => unsubscribe();
+        fetchChatFromUser(user.uid, setChatroomId);
     }, [user]);
 
-    //fetchMessageByGroupID
     useEffect(() => {
-        console.log("ChatroomID: ",chatroomId);
-        const chatroom = doc(db, "chatrooms", chatroomId);
-        const messagesRef = collection(chatroom, "messages");
-        const q = query(messagesRef, /*orderBy("createdAt"), */limit(25));
-        const unsubscribe = onSnapshot(q, snapshot => {
-            
-            const messageList = [];
-            snapshot.forEach(doc => {
-                console.log("HELLO", doc.data());
-                messageList.push(doc.data().message);
-            });
-            console.log("🚀 ~ file: Mainchat.jsx ~ line 34 ~ useEffect ~ messageList", messageList);
-            setMessages(messageList);
-        });
-
-        return () => unsubscribe();
+        fetchMessagesFromChat(chatroomId, setMessages);
     }, [chatroomId]);
-
+    
+    const sendMessage = async(e) => {
+        e.preventDefault();
+        const message = formValue;
+        setFormValue("");
+        addMessage(auth.currentUser.uid, chatroomId, message);
+    }
 
     //Takes the messages and displays them (do something when chatroom null too)
     return (
-        <>
+        <div className="mainchat">
             <main>
-                {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg}/>)}
+                {messages && messages.map(msg => <ChatMessage key={msg.id} uid={msg.uid} text={msg.text}/>)}
             </main>
-            {/* <form onSubmit={sendMessage}>
+            <form onSubmit={sendMessage}>
                 <input value={formValue} onChange={e => setFormValue(e.target.value)} />
                 <button type="submit">Send</button>
-            </form> */}
-        </>
+            </form>
+        </div>
     );
 };
 
-function ChatMessage({ uid, text, createAt, name }) {
+function ChatMessage({ uid, text, createdAt, name }) {
     const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
 
     return (
         <div className={`message ${messageClass}`}>
-            <div>
-                <p>{name}</p>
-                <p>{createAt}</p>
-            </div>
             <p>{text}</p>
         </div>
     );

@@ -118,13 +118,13 @@ p {
   line-height: var(--body-line-height);
 }
 
-.page.Light {
+.app.Light {
   --color-base:#fff;
   --color-text:black;
   --color-accent:#005C99;
 }
 
-.page.Dark {
+.app.Dark {
   --color-base:black;
   --color-text:#fff;
   --color-accent:#009499;

@@ -12,13 +12,13 @@ $colors-dark:(
     accent: #009499
 );
 
-.page.Light {
+.app.Light {
     @each $name, $color in $colors{
         --color-#{$name}:#{$color};
     }
 }
 
-.page.Dark {
+.app.Dark {
     @each $name, $color in $colors-dark{
         --color-#{$name}:#{$color};
     }
