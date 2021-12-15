@@ -16,14 +16,16 @@ function MainChat() {
 
     //some stuff here needs to be async
     useEffect(() => {
-        fetchChatFromUser(user.uid, setChatroomId);
+        const unsubscribe = fetchChatFromUser(user.uid, setChatroomId);
+        return () => unsubscribe();
     }, [user]);
 
     useEffect(() => {
-        fetchMessagesFromChat(chatroomId, setMessages);
+        const unsubscribe = fetchMessagesFromChat(chatroomId, setMessages);
+        return () => unsubscribe();
     }, [chatroomId]);
     
-    const sendMessage = async(e) => {
+    const sendMessage = (e) => {
         e.preventDefault();
         const message = formValue;
         setFormValue("");

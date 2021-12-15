@@ -17,7 +17,7 @@ const fetchChatFromUser = (uid, setChatroomId) => {
         snapshot.forEach(doc => setChatroomId(doc.id));
     });
 
-    return () => unsubscribe();
+    return unsubscribe;
 }   
 
 export {
