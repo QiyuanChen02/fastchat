@@ -1,29 +1,12 @@
 @use "../abstracts" as *;
 
-$colors:(
-    base: #fff,
-    text: rgb(0, 0, 0),
-    accent: #005C99
-);
-
-$colors-dark:(
-    base: map-get($colors, text),
-    text: map-get($colors, base),
-    accent: #009499
-);
-
-.app.Light {
-    @each $name, $color in $colors{
-        --color-#{$name}:#{$color};
-    }
+:root {
+    --background-color-1: white;
+    --text-color-1: black;
+    --accent-color: #0a5e96;
 }
 
-.app.Dark {
-    @each $name, $color in $colors-dark{
-        --color-#{$name}:#{$color};
-    }
-}
 
 svg {
-    fill: getColor(text);
+    fill: var(--text-color-1);
 }

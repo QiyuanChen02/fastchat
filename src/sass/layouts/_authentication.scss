@@ -33,7 +33,7 @@
         }
 
         button {
-            @include button(getColor(accent));
+            @include button(var(--accent-color));
         }
         
     }

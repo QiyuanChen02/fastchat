@@ -5,8 +5,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 3rem;
-    background-color: getColor(base);
-    color: getColor(text); 
+    background-color: var(--background-color-1);
+    color: var(--text-color-1); 
 
     ul {
         display: flex;

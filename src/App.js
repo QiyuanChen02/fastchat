@@ -9,11 +9,9 @@ import { GetUserContext } from "./contexts/AuthenticationContext.jsx";
 function App() {
 
   const user = GetUserContext();
-
-  const [theme, setTheme] = useState("Light");
   return (
-    <div className={`app ${theme}`}>
-      <Navbar theme={theme} setTheme={setTheme}/>
+    <div className={`app`}>
+      <Navbar />
       {user 
         ? <>
             <MainChat />
