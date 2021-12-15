@@ -6,7 +6,7 @@ import { GetSignupModalUpdateContext } from '../../contexts/SignupModalContext';
 import { auth } from "../../firebase";
 import Logo from './Logo';
 
-const Navbar = () => {
+const Navbar = ({ theme, setTheme }) => {
 
     const toggleLoginModal = GetLoginModalUpdateContext();
     const toggleSignupModal = GetSignupModalUpdateContext();
