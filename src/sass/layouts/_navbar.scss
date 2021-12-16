@@ -1,31 +1,29 @@
-@use "../abstracts" as *;
+@use "../abstracts" as a;
 
 .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 3rem;
+    @include a.flex(row, space-between, center);
+    padding: 1.5rem;
     background-color: var(--background-color-1);
     color: var(--text-color-1); 
 
     ul {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        gap: 3rem;
+        @include a.flex(row, center, space-evenly);
     }
 
     li {
         list-style-type: none;
         display: block;
-        font-size: 2rem;
+        font-size: var(--text-lg);
         cursor: pointer;
+        margin-right: var(--space-md);
     }
 
     svg {
         cursor: pointer;
-        width: 4em;
-        height: 4em;
+        width: 3em;
+        height: 3em;
     }
 
 }
+
+//Use paypal styling for header

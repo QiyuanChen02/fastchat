@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Navbar, Landing, Info, Footer, MainChat } from "./components/index.js";
 import Login from "./authentication/Login.jsx";
 import SignUp from "./authentication/Signup.jsx";
@@ -12,19 +10,20 @@ function App() {
   return (
     <div className={`app`}>
       <Navbar />
-      {user 
-        ? <>
-            <MainChat />
-          </>
-        : <>
-            <Landing />
-            <Info />
-            <Login />
-            <SignUp />
-          </>
-      }
+      {user ? <MainChat /> : <LandingPage />}
       <Footer />
     </div>
+  );
+};
+
+function LandingPage() {
+  return (
+    <>
+      <Landing />
+      <Info />
+      <Login />
+      <SignUp />
+    </>
   );
 };
 

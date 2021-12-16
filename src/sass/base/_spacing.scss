@@ -8,10 +8,21 @@
     --space-xl:   3.25em;
     --space-xxl:  5.25em;
     --space-xxxl: 8.5em;
+
 }
 
 h1, h2, h3 {
-    margin-bottom: var(--space-xxs);
     line-height: var(--heading-line-height);
 }
 
+h1 {
+    margin-bottom: var(--space-lg);
+}
+
+h2 {
+    margin-bottom: var(--space-md);
+}
+
+h3 {
+    margin-bottom: var(--space-sm);
+}
