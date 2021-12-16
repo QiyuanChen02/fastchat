@@ -76,10 +76,10 @@ select {
   }
 }
 :root {
-  --font-primary: sans-serif;
+  --font-primary: Verdana;
   --font-secondary: serif;
   --text-base-size: 1em;
-  --text-scale-ratio: 1.2;
+  --text-scale-ratio: 1.25;
   --text-xs: calc(1em / (var(--text-scale-ratio) * var(--text-scale-ratio)));
   --text-sm: calc(1em / var(--text-scale-ratio));
   --text-md: 1em;
@@ -118,20 +118,15 @@ p {
   line-height: var(--body-line-height);
 }
 
-.app.Light {
-  --color-base:#fff;
-  --color-text:black;
-  --color-accent:#005C99;
-}
-
-.app.Dark {
-  --color-base:black;
-  --color-text:#fff;
-  --color-accent:#009499;
+:root {
+  --background-color-1: white;
+  --text-color-1: black;
+  --accent-color: #0a5e96;
+  --error-color: red;
 }
 
 svg {
-  fill: var(--color-text);
+  fill: var(--text-color-1);
 }
 
 :root {
@@ -147,8 +142,19 @@ svg {
 }
 
 h1, h2, h3 {
-  margin-bottom: var(--space-xxs);
   line-height: var(--heading-line-height);
+}
+
+h1 {
+  margin-bottom: var(--space-lg);
+}
+
+h2 {
+  margin-bottom: var(--space-md);
+}
+
+h3 {
+  margin-bottom: var(--space-sm);
 }
 
 .overlay {
@@ -162,71 +168,103 @@ h1, h2, h3 {
 
 .loginModal, .signupModal {
   position: fixed;
-  width: 768px;
-  max-width: calc(100vw + 1px);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 660px;
   z-index: 10;
-  padding: var(--space-lg);
-  background-color: white;
+  padding: var(--space-xl);
+  border-radius: var(--space-sm);
+  background-color: var(--background-color-1);
   pointer-events: all;
-  overflow-y: auto;
-  border-radius: 15px;
+}
+@media (max-width: 768px) {
+  .loginModal, .signupModal {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
 }
 .loginModal .close-modal, .signupModal .close-modal {
   position: absolute;
-  top: 30px;
-  right: 30px;
-  width: 40px;
-  height: 40px;
-  font-size: 30px;
+  top: var(--space-sm);
+  right: var(--space-sm);
   text-align: center;
-  background-color: white;
+  background-color: var(--background-color-1);
+  cursor: pointer;
+  border: none;
+  font-size: var(--text-xxl);
+  line-height: var(--text-md);
+}
+.loginModal .form-header, .signupModal .form-header {
+  font-size: 1.5em;
 }
 .loginModal form, .signupModal form {
   display: flex;
   flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  font-size: var(--text-md);
 }
 .loginModal form label, .signupModal form label {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  margin-top: var(--space-md);
 }
 .loginModal form input, .signupModal form input {
-  padding: 8px;
-  font-size: 2rem;
+  padding: var(--space-xs);
+  margin-top: var(--space-sm);
   border: 1px solid black;
 }
+.loginModal form p, .signupModal form p {
+  color: var(--error-color);
+}
 .loginModal form button, .signupModal form button {
+  float: right;
+  margin-top: var(--space-md);
   display: block;
-  border: 0;
-  font-size: var(--text-md);
+  border: none;
+  font-size: var(--text-xl);
+  font-weight: bold;
   cursor: pointer;
-  background-color: var(--color-accent);
+  background-color: #0081D5;
+  color: white;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 1.5em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 3em;
+}
+.loginModal form button:hover, .loginModal form button:focus, .signupModal form button:hover, .signupModal form button:focus {
+  background-color: #005C99;
+}
+.loginModal form button:active, .signupModal form button:active {
+  background-color: #003659;
 }
 
 .topbar {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-between;
-  padding: 3rem;
-  background-color: var(--color-base);
-  color: var(--color-text);
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--background-color-1);
+  color: var(--text-color-1);
 }
 .topbar ul {
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 3rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: space-evenly;
 }
 .topbar li {
   list-style-type: none;
   display: block;
-  font-size: 2rem;
+  font-size: var(--text-lg);
   cursor: pointer;
+  margin-right: var(--space-md);
 }
 .topbar svg {
   cursor: pointer;
-  width: 4em;
-  height: 4em;
+  width: 3em;
+  height: 3em;
 }/*# sourceMappingURL=main.css.map */

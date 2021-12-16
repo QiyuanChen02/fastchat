@@ -54,8 +54,10 @@ export default function SignUp() {
                         <input type="password" name="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
                         <label htmlFor="confirmPassword">Confirm Password: </label>
                         <input type="password" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-                        <p>{error}</p>
-                        <button type="submit">Submit</button>
+                        <p>{error ? error : '\u00A0'}</p>
+                        <div>
+                            <button type="submit">Submit</button>
+                        </div>
                     </form>
                 </div>
                 <div className="overlay" onClick={updateSignUpModal}></div>

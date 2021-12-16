@@ -1,40 +1,48 @@
 @use "../abstracts" as *;
 @use "../base" as *;
 @use "../components" as *;
-@use "../components/modals" as *;
 
 .loginModal, .signupModal {
-    @include modal();
+    @include modal(660px);
 
     .close-modal {
         position: absolute;
-        top: 30px;
-        right: 30px;
-        width: 40px;
-        height: 40px;
-        font-size: 30px;
+        top: var(--space-sm);
+        right: var(--space-sm);
         text-align: center;
-        background-color: white;
+        background-color: var(--background-color-1);
+        cursor: pointer;
+        border: none;
+        font-size: var(--text-xxl);
+        line-height: var(--text-md);
+    }
+
+    .form-header {
+        font-size: 1.5em;
     }
 
     form {
-        display: flex;
-        flex-direction: column;
+        @include flex(column, stretch, stretch);
+        font-size: var(--text-md);
 
         label {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            margin-top: var(--space-md);
         }
 
         input {
-            padding: 8px;
-            font-size: 2rem;
+            padding: var(--space-xs);
+            margin-top: var(--space-sm);
             border: 1px solid black;
         }
 
-        button {
-            @include button(var(--accent-color));
+        p {
+            color: var(--error-color);
         }
-        
+
+        button {
+            float: right;
+            margin-top: var(--space-md);
+            @include button();
+        }
     }
 }

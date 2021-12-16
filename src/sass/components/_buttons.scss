@@ -1,7 +1,23 @@
-@mixin button($color){
+@mixin button(){
     display: block;
-    border: 0;
-    font-size: var(--text-md);
+    border: none;
+    font-size: var(--text-xl);
+    font-weight: bold;
     cursor: pointer;
-    background-color: $color;
+    background-color: #0081D5;
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 1.5em;
+    width: fit-content;
+    height: 3em;
+
+    &:hover, &:focus {
+        background-color: #005C99;
+    }
+
+    &:active {
+        background-color: #003659;
+    }
 }
+
+//This button is only for the submit button and hasn't been generalised yet

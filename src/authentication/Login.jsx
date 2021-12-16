@@ -37,15 +37,17 @@ export default function Login() {
                 <div className="loginModal">
                     <button className="close-modal" onClick={updateLoginModal}>&times;</button>
                     <div className="form-header">
-                        <h3>Log in</h3>
+                        <h2>Log in</h2>
                     </div>
                     <form onSubmit={loginFormSubmit}>
                         <label htmlFor="email">Email: </label>
                         <input type="text" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
                         <label htmlFor="password">Password: </label>
                         <input type="password" name="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
-                        <p>{error}</p>
-                        <button type="submit">Submit</button>
+                        <p>{error ? error : '\u00A0'}</p>
+                        <div>
+                            <button type="submit">Submit</button>
+                        </div>
                     </form>
                 </div>
                 <div className="overlay" onClick={updateLoginModal}></div>
