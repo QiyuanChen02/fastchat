@@ -1,4 +1,4 @@
-import { Navbar, Landing, Info, Footer, MainChat } from "./components/index.js";
+import { Topbar, Landing, Info, Footer, MainChat } from "./components/index.js";
 import Login from "./authentication/Login.jsx";
 import SignUp from "./authentication/Signup.jsx";
 
@@ -9,7 +9,7 @@ function App() {
   const user = GetUserContext();
   return (
     <div className={`app`}>
-      <Navbar />
+      <Topbar />
       {user ? <MainChat /> : <LandingPage />}
       <Footer />
     </div>

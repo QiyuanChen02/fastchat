@@ -1,9 +1,8 @@
-@use "../abstracts" as *;
-@use "../base" as *;
-@use "../components" as *;
+@use "../abstracts" as a;
+@use "../components" as c;
 
 .loginModal, .signupModal {
-    @include modal(660px);
+    @include c.modal(660px);
 
     .close-modal {
         position: absolute;
@@ -22,7 +21,7 @@
     }
 
     form {
-        @include flex(column, stretch, stretch);
+        @include a.flex(column, stretch, stretch);
         font-size: var(--text-md);
 
         label {
@@ -42,7 +41,7 @@
         button {
             float: right;
             margin-top: var(--space-md);
-            @include button();
+            @include c.button();
         }
     }
 }

@@ -125,10 +125,6 @@ p {
   --error-color: red;
 }
 
-svg {
-  fill: var(--text-color-1);
-}
-
 :root {
   --space-xxxs: 0.25em;
   --space-xxs: 0.375em;
@@ -267,4 +263,17 @@ h3 {
   cursor: pointer;
   width: 3em;
   height: 3em;
+  fill: var(--text-color-1);
+}
+
+.landing {
+  background-color: red;
+}
+
+.info {
+  background-color: blue;
+}
+
+footer {
+  background-color: green;
 }/*# sourceMappingURL=main.css.map */

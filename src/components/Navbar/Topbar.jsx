@@ -18,7 +18,6 @@ const Navbar = () => {
 
     return (
         <section className="topbar">
-
             <Logo />
             <nav>
                 <ul>

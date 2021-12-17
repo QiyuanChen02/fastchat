@@ -1,13 +1,8 @@
-@use "../abstracts" as *;
+@use "../abstracts" as a;
 
 :root {
     --background-color-1: white;
     --text-color-1: black;
     --accent-color: #0a5e96;
     --error-color: red;
-}
-
-
-svg {
-    fill: var(--text-color-1);
 }

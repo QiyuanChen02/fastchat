@@ -2,9 +2,10 @@ import React from 'react'
 
 function Info() {
     return (
-        <div>
+        <section className="info">
             <h1>Info page</h1>
-        </div>
+            <p>Hello</p>
+        </section>
     )
 }
 

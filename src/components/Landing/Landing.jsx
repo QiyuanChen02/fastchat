@@ -1,8 +1,9 @@
 function Main() {
     return (
-        <div className="main">
+        <section className="landing">
             <h1>Landing page</h1>
-        </div>
+            <p>Hello</p>
+        </section>
     )
 }
 
