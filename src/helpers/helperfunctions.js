@@ -9,4 +9,12 @@ const errorMessage = (err) => {
     }
 }
 
-export { errorMessage }
+const getTime = (createdAt) => {
+    console.log(createdAt);
+    const minutes = createdAt.getMinutes().toString();
+    const hours = createdAt.getHours().toString();
+
+    return `${hours.length === 1 ? "0" + hours : hours}:${minutes.length === 1 ? "0" + minutes : minutes}`
+}
+
+export { errorMessage, getTime }

@@ -1,4 +1,4 @@
-import { Topbar, Landing, Info, Footer, MainChat } from "./components/index.js";
+import { Topbar, Landing, Info, Footer, MainChat, Selectchat } from "./components/index.js";
 import Login from "./authentication/Login.jsx";
 import SignUp from "./authentication/Signup.jsx";
 
@@ -10,7 +10,7 @@ function App() {
   return (
     <div className={`app`}>
       <Topbar />
-      {user ? <MainChat /> : <LandingPage />}
+      {user ? <ChatPage /> : <LandingPage />}
       <Footer />
     </div>
   );
@@ -26,5 +26,14 @@ function LandingPage() {
     </>
   );
 };
+
+function ChatPage() {
+  return (
+    <>
+      <MainChat />
+      <Selectchat />
+    </>
+  )
+}
 
 export default App;

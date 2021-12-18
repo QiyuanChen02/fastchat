@@ -24,11 +24,16 @@ service cloud.firestore {
     }
     
     match /chatrooms/{chatroomId}{
-    	allow read, write: if isChatRoomMember(chatroomId) && isSignedIn();
+    	allow read: if isChatRoomMember(chatroomId) && isSignedIn();
+      allow write: if true;
 
       match /messages/{messageId}{
         allow read, write: if isChatRoomMember(chatroomId) && isSignedIn();
       }
+    }
+
+    match /awaitingusers/{awaituserId}{
+      allow read, write: if true;
     }
   }
 }
