@@ -30,7 +30,6 @@ function LandingPage() {
 function ChatPage() {
   return (
     <>
-      <MainChat />
       <Selectchat />
     </>
   )

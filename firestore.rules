@@ -11,7 +11,7 @@ service cloud.firestore {
     }
 
     function isChatRoomMember(chatroomId) {
-        return request.auth.uid in get(/databases/$(database)/documents/chatrooms/$(chatroomId)).data.members;
+        return (request.auth.uid in get(/databases/$(database)/documents/chatrooms/$(chatroomId)).data.members) || chatroomId == "main";
     }
 
     match /{document=**} {
@@ -19,8 +19,8 @@ service cloud.firestore {
     }
     
     match /users/{userId}{
-      allow read: if isSignedIn();
-      allow write: if isOwner(userId);
+      allow read: if isOwner(userId);
+      allow write: if isSignedIn();
     }
     
     match /chatrooms/{chatroomId}{

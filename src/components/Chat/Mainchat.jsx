@@ -4,7 +4,7 @@ import { auth } from '../../firebase';
 import { addMessage, fetchMessagesFromChat } from '../../database/messages';
 import { fetchUserDetails, fetchChatFromUser } from '../../database/users';
 
-function MainChat() {
+function MainChat({ toggle }) {
 
     const user = GetUserContext();
     const [username, setUsername] = useState("");
@@ -12,16 +12,17 @@ function MainChat() {
     const [messages, setMessages] = useState([]);
     const [formValue, setFormValue] = useState("");
     
-    useEffect(async () => {
-        const data = await fetchUserDetails(user.uid);
-        setUsername(data.name);
-        //setChatroomId(data.chatroom);
-    }, [user]); //want to call this everytime some user details change, e.g change chatroom
-
     useEffect(() => {
-        const unsubscribe = fetchChatFromUser(user.uid, setChatroomId);
-        return () => unsubscribe();
-    }, [user]);
+        fetchUserDetails(user.uid).then(data => {
+            setUsername(data.name);
+            setChatroomId(data.chatroom);
+        });
+    }, [user, toggle]); //want to call this everytime some user details change, e.g change chatroom
+
+    // useEffect(() => {
+    //     const unsubscribe = fetchChatFromUser(user.uid, setChatroomId);
+    //     return () => unsubscribe();
+    // }, [user]);
 
     useEffect(() => {
         const unsubscribe = fetchMessagesFromChat(chatroomId, setMessages);

@@ -10,7 +10,6 @@ const errorMessage = (err) => {
 }
 
 const getTime = (createdAt) => {
-    console.log(createdAt);
     const minutes = createdAt.getMinutes().toString();
     const hours = createdAt.getHours().toString();
 

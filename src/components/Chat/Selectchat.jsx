@@ -1,11 +1,13 @@
-import { limit, query, collection, setDoc, doc, deleteDoc, addDoc, getDocs } from 'firebase/firestore';
+import { limit, query, collection, setDoc, doc, deleteDoc, addDoc, getDocs, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
-import React from 'react'
+import React, { useState } from 'react'
 import { GetUserContext } from '../../contexts/AuthenticationContext';
+import { MainChat } from '..';
 
 function Selectchat() {
 
     const user = GetUserContext();
+    const [toggle, setToggle] = useState(false);
 
     const createChatroom = async (uid1, uid2) => {
 
@@ -17,17 +19,16 @@ function Selectchat() {
         const user1Ref = doc(db, "users", uid1);
         const user2Ref = doc(db, "users", uid2);
 
-        //setUserDetails({
-        //  ...userDetails,
-        //  chatroom: newChatId
-        //})
-        setDoc(user1Ref, {
+        updateDoc(user1Ref, {
             chatroom: newChatId
         }, { merge: true });
 
-        setDoc(user2Ref, {
+        updateDoc(user2Ref, {
             chatroom: newChatId
         }, { merge: true });
+
+        setToggle(toggle => !toggle);
+
     }
 
     const findAChat = async () => {
@@ -62,6 +63,7 @@ function Selectchat() {
 
     return (
         <div>
+            <MainChat toggle={toggle}/>
             <button onClick={findAChat}>Find own chat</button>
         </div>
     )
