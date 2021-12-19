@@ -41,7 +41,7 @@
         button {
             float: right;
             margin-top: var(--space-md);
-            @include c.button();
+            @include c.button(xl, 1.8em, false);
         }
     }
 }

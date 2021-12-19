@@ -20,11 +20,9 @@ const Navbar = () => {
         <section className="topbar">
             <Logo />
             <nav>
-                <ul>
-                    {!user ? <li onClick={toggleLoginModal} tabIndex={0}>Login In</li> : null}
-                    {!user ? <li onClick={toggleSignupModal} tabIndex={0}>Sign Up</li> : null}
-                    {user ? <li onClick={logout} tabIndex={0}>Log Out</li> : null}
-                </ul>
+                {!user ? <button onClick={toggleLoginModal} tabIndex={0}>Login In</button> : null}
+                {!user ? <button onClick={toggleSignupModal} tabIndex={0}>Sign Up</button> : null}
+                {user ? <button onClick={logout} tabIndex={0}>Log Out</button> : null}
             </nav>
         </section>
     );

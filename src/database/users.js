@@ -1,4 +1,4 @@
-import { doc, setDoc, onSnapshot, getDoc } from "firebase/firestore";
+import { doc, setDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 
 const addUser = (id, username) => {

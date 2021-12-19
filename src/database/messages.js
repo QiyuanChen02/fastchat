@@ -23,14 +23,13 @@ const fetchMessagesFromChat = (chatroomId, setMessages) => {
             const messageList = [];
             snapshot.forEach(doc => {
                 const data = {id: doc.id, ...doc.data()}
-                data.createdAt = getTime(data.createdAt.toDate());
+                data.createdAt = getTime(data.createdAt.toDate()); //change creation date to 00:00 format
                 messageList.unshift(data);
             });
             console.log("🚀 ~ file: Mainchat.jsx ~ line 34 ~ useEffect ~ messageList", messageList);
             setMessages(messageList);
         }
     });
-
     return unsubscribe;
 }
 

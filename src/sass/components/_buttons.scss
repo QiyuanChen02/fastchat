@@ -1,22 +1,24 @@
-@mixin button(){
+@mixin button($font-size, $height, $inverted: false){
     display: block;
-    border: none;
-    font-size: var(--text-xl);
+    border: 1px solid var(--accent-color);
+    font-size: var(--text-#{$font-size});
     font-weight: bold;
     cursor: pointer;
-    background-color: #0081D5;
-    color: white;
     padding: var(--space-sm) var(--space-md);
-    border-radius: 1.5em;
+    border-radius: 10em;
     width: fit-content;
-    height: 3em;
+    height: calc(#{$height} + 2 * var(--space-sm));
 
-    &:hover, &:focus {
-        background-color: #005C99;
+    @if $inverted {
+        color: var(--accent-color);
+        background-color: var(--background-color-1);
+    } @else {
+        color: var(--background-color-1);
+        background-color: var(--accent-color);
     }
 
-    &:active {
-        background-color: #003659;
+    &:hover, &:focus {
+        filter: brightness(90%);
     }
 }
 

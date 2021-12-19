@@ -121,7 +121,7 @@ p {
 :root {
   --background-color-1: white;
   --text-color-1: black;
-  --accent-color: #0a5e96;
+  --accent-color: hsl(204, 100%, 36%);
   --error-color: red;
 }
 
@@ -217,24 +217,21 @@ h3 {
   float: right;
   margin-top: var(--space-md);
   display: block;
-  border: none;
+  border: 1px solid var(--accent-color);
   font-size: var(--text-xl);
   font-weight: bold;
   cursor: pointer;
-  background-color: #0081D5;
-  color: white;
   padding: var(--space-sm) var(--space-md);
-  border-radius: 1.5em;
+  border-radius: 10em;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  height: 3em;
+  height: calc(1.8em + 2 * var(--space-sm));
+  color: var(--background-color-1);
+  background-color: var(--accent-color);
 }
 .loginModal form button:hover, .loginModal form button:focus, .signupModal form button:hover, .signupModal form button:focus {
-  background-color: #005C99;
-}
-.loginModal form button:active, .signupModal form button:active {
-  background-color: #003659;
+  filter: brightness(90%);
 }
 
 .topbar {
@@ -242,22 +239,53 @@ h3 {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: var(--space-md);
   background-color: var(--background-color-1);
   color: var(--text-color-1);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
-.topbar ul {
+.topbar nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: space-evenly;
 }
-.topbar li {
-  list-style-type: none;
-  display: block;
-  font-size: var(--text-lg);
-  cursor: pointer;
+.topbar button:first-of-type {
   margin-right: var(--space-md);
+  display: block;
+  border: 1px solid var(--accent-color);
+  font-size: var(--text-md);
+  font-weight: bold;
+  cursor: pointer;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 10em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: calc(2em + 2 * var(--space-sm));
+  color: var(--accent-color);
+  background-color: var(--background-color-1);
+}
+.topbar button:first-of-type:hover, .topbar button:first-of-type:focus {
+  filter: brightness(90%);
+}
+.topbar button:nth-of-type(2) {
+  display: block;
+  border: 1px solid var(--accent-color);
+  font-size: var(--text-md);
+  font-weight: bold;
+  cursor: pointer;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 10em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: calc(2em + 2 * var(--space-sm));
+  color: var(--background-color-1);
+  background-color: var(--accent-color);
+}
+.topbar button:nth-of-type(2):hover, .topbar button:nth-of-type(2):focus {
+  filter: brightness(90%);
 }
 .topbar svg {
   cursor: pointer;
@@ -268,12 +296,15 @@ h3 {
 
 .landing {
   background-color: red;
+  opacity: 0.05;
 }
 
 .info {
   background-color: blue;
+  opacity: 0.05;
 }
 
 footer {
   background-color: green;
+  opacity: 0.05;
 }/*# sourceMappingURL=main.css.map */

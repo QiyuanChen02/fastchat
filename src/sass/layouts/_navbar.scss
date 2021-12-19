@@ -1,21 +1,24 @@
 @use "../abstracts" as a;
+@use "../components" as c;
 
 .topbar {
     @include a.flex(row, space-between, center);
-    padding: 1.5rem;
+    padding: var(--space-md);
     background-color: var(--background-color-1);
-    color: var(--text-color-1); 
+    color: var(--text-color-1);
+    box-shadow: 0 5px 5px hsl(0, 0%, 0%, 0.3);
 
-    ul {
+    nav {
         @include a.flex(row, center, space-evenly);
     }
 
-    li {
-        list-style-type: none;
-        display: block;
-        font-size: var(--text-lg);
-        cursor: pointer;
+    button:first-of-type {
         margin-right: var(--space-md);
+        @include c.button(md, 2em, true);
+    }
+
+    button:nth-of-type(2) {
+        @include c.button(md, 2em, false);
     }
 
     svg {
