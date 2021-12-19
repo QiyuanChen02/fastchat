@@ -3,6 +3,8 @@ import Login from "./authentication/Login.jsx";
 import SignUp from "./authentication/Signup.jsx";
 
 import { GetUserContext } from "./contexts/AuthenticationContext.jsx";
+import { useState, useEffect } from "react";
+import { userInfoListener } from "./database/users.js";
 
 function App() {
 
@@ -10,6 +12,7 @@ function App() {
   return (
     <div className={`app`}>
       <Topbar />
+      {user && user.uid}
       {user ? <ChatPage /> : <LandingPage />}
       <Footer />
     </div>
@@ -28,8 +31,21 @@ function LandingPage() {
 };
 
 function ChatPage() {
+
+  const user = GetUserContext();
+  const [userState, setUserState] = useState({
+    name: "",
+    chatroom: "main"
+  }); //maybe change all from null to main for nicer code
+
+  useEffect(() => {
+    const unsubscribe = userInfoListener(user.uid, setUserState);
+    return () => unsubscribe();
+  }, [user.uid]);
+
   return (
     <>
+      <MainChat {...userState} />
       <Selectchat />
     </>
   )

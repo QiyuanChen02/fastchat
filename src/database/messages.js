@@ -15,7 +15,7 @@ const addMessage = (uid, username, chatroomId, message) => {
 }
 
 const fetchMessagesFromChat = (chatroomId, setMessages) => {
-    const chatroom = doc(db, "chatrooms", chatroomId || "main");
+    const chatroom = doc(db, "chatrooms", chatroomId);
     const messagesRef = collection(chatroom, "messages");
     const q = query(messagesRef, orderBy("createdAt", "desc"), limit(10));
     const unsubscribe = onSnapshot(q, snapshot => {

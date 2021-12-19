@@ -1,69 +1,60 @@
-import { limit, query, collection, setDoc, doc, deleteDoc, addDoc, getDocs, updateDoc } from 'firebase/firestore';
+import { limit, query, collection, doc, deleteDoc, addDoc, getDocs, updateDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../../firebase';
-import React, { useState } from 'react'
+import React from 'react'
 import { GetUserContext } from '../../contexts/AuthenticationContext';
-import { MainChat } from '..';
 
 function Selectchat() {
 
     const user = GetUserContext();
-    const [toggle, setToggle] = useState(false);
 
-    const createChatroom = async (uid1, uid2) => {
+    const setUserChatroom = async (uid, chatroomId) => {
+        const userRef = doc(db, "users", uid);
+        await updateDoc(userRef, {
+            chatroom: chatroomId
+        });
+    }
+
+    const createChatroom = async (uid) => {
 
         const chatroomsRef = collection(db, "chatrooms");
         const docRef = await addDoc(chatroomsRef, {
-            members: [uid1, uid2]
+            members: [uid]
         });
-        const newChatId = docRef.id;
-        const user1Ref = doc(db, "users", uid1);
-        const user2Ref = doc(db, "users", uid2);
+        const newChatroomId = docRef.id;
+        setUserChatroom(uid, newChatroomId);
+        return newChatroomId;
+    }
 
-        updateDoc(user1Ref, {
-            chatroom: newChatId
-        }, { merge: true });
+    const joinChatroom = async (uid, chatroomId) => {
 
-        updateDoc(user2Ref, {
-            chatroom: newChatId
-        }, { merge: true });
-
-        setToggle(toggle => !toggle);
-
+        const chatroomRef = doc(db, "chatrooms", chatroomId);
+        await updateDoc(chatroomRef, {
+            members: arrayUnion(uid)
+        });
+        await setUserChatroom(uid, chatroomId);
     }
 
     const findAChat = async () => {
 
-        const awaitingusersRef = collection(db, "awaitingusers");
-        const q = query(awaitingusersRef, limit(1));
+        const awaitingchatroomsRef = collection(db, "awaitingchatrooms");
+        const q = query(awaitingchatroomsRef, limit(1));
         
         const snapshot = await getDocs(q);
 
-        if (!snapshot.empty) {
-            const otherUser = snapshot.docs[0];
-            await createChatroom(user.uid, otherUser.id);
-            deleteDoc(otherUser.ref);
+        if (snapshot.empty) {
+            const chatroomId = await createChatroom(user.uid);
+            addDoc(awaitingchatroomsRef, {
+                chatroomId: chatroomId
+            });
         } else {
-            setDoc(doc(db, "awaitingusers", user.uid), {});
+            const requiredChatroom = snapshot.docs[0].data().chatroomId;
+            await joinChatroom(user.uid, requiredChatroom);
+            await deleteDoc(doc(db, "awaitingchatrooms", snapshot.docs[0].id));
         }
-
-        // const unsubscribe = onSnapshot(q, snapshot => {
-        //     console.log("AwaitingUsersSnapshot: ", snapshot);
-        //     if (!snapshot.empty){
-        //         alert("User found");
-        //         createChatroom(user.uid, snapshot.docs[0].id);
-        //         deleteDoc(doc(db, "awaitingusers", user.uid));
-        //         unsubscribe();
-        //     } else {
-        //         alert("User not found");
-        //         setDoc(doc(db, "awaitingusers", user.uid), {});
-        //     }
-        // });
-
     }
 
     return (
         <div>
-            <MainChat toggle={toggle}/>
             <button onClick={findAChat}>Find own chat</button>
         </div>
     )

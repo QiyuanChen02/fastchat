@@ -32,8 +32,8 @@ service cloud.firestore {
       }
     }
 
-    match /awaitingusers/{awaituserId}{
-      allow read, write: if true;
+    match /awaitingchatrooms/{awaitingchatroomId}{
+      allow read, write: if isSignedIn() && isChatRoomMember(awaitingchatroomId);
     }
   }
 }
