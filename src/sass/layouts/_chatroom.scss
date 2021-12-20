@@ -1,0 +1,30 @@
+@use "../abstracts" as a;
+
+.mainchat {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(132, 218, 218);
+    margin: auto;
+    width: a.$chat-width;
+    max-height: 600px;
+    margin-top: var(--space-xxl);
+
+    main {
+        overflow-y: scroll;
+    }
+    
+    form {
+        display: flex;
+        
+        input {
+            width: 80%;
+            padding: var(--space-xs);
+            border: 1px solid black;
+        }
+
+        button {
+            width: 20%;
+        }
+    }
+}
+

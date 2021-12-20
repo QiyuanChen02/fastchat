@@ -1,0 +1,30 @@
+@use "../abstracts" as a;
+
+.messageWrapper {
+    display: flex;
+    &.sent {
+        justify-content: flex-end;
+        .messageInfo {
+            text-align: end;
+        }
+        .text {
+            border-radius: 1em 0 1em 1em
+        }
+    }
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    margin: var(--space-sm) var(--space-md);
+    width: fit-content;
+    max-width: calc(#{a.$chat-width} * 0.6);
+
+    .text {
+        background-color: green;
+        border-radius: 0 1em 1em 1em;
+        padding: var(--space-sm) var(--space-md);
+    }    
+
+}
+

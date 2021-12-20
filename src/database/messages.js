@@ -17,7 +17,7 @@ const addMessage = (uid, username, chatroomId, message) => {
 const fetchMessagesFromChat = (chatroomId, setMessages) => {
     const chatroom = doc(db, "chatrooms", chatroomId);
     const messagesRef = collection(chatroom, "messages");
-    const q = query(messagesRef, orderBy("createdAt", "desc"), limit(10));
+    const q = query(messagesRef, orderBy("createdAt", "desc"), limit(25));
     const unsubscribe = onSnapshot(q, snapshot => {
         if (!snapshot.metadata.hasPendingWrites){
             const messageList = [];

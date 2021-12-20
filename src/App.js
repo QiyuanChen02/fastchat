@@ -12,7 +12,6 @@ function App() {
   return (
     <div className={`app`}>
       <Topbar />
-      {user && user.uid}
       {user ? <ChatPage /> : <LandingPage />}
       <Footer />
     </div>

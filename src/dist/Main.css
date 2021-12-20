@@ -162,6 +162,34 @@ h3 {
   pointer-events: all;
 }
 
+.messageWrapper {
+  display: flex;
+}
+.messageWrapper.sent {
+  justify-content: flex-end;
+}
+.messageWrapper.sent .messageInfo {
+  text-align: end;
+}
+.messageWrapper.sent .text {
+  border-radius: 1em 0 1em 1em;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  margin: var(--space-sm) var(--space-md);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: calc(min(784px, 100%) * 0.6);
+}
+.message .text {
+  background-color: green;
+  border-radius: 0 1em 1em 1em;
+  padding: var(--space-sm) var(--space-md);
+}
+
 .loginModal, .signupModal {
   position: fixed;
   top: 50%;
@@ -307,4 +335,28 @@ h3 {
 footer {
   background-color: green;
   opacity: 0.05;
+}
+
+.mainchat {
+  display: flex;
+  flex-direction: column;
+  background-color: #84dada;
+  margin: auto;
+  width: min(784px, 100%);
+  max-height: 600px;
+  margin-top: var(--space-xxl);
+}
+.mainchat main {
+  overflow-y: scroll;
+}
+.mainchat form {
+  display: flex;
+}
+.mainchat form input {
+  width: 80%;
+  padding: var(--space-xs);
+  border: 1px solid black;
+}
+.mainchat form button {
+  width: 20%;
 }/*# sourceMappingURL=main.css.map */

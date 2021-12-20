@@ -36,10 +36,11 @@ function ChatMessage({ uid, text, createdAt, username }) {
     const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
 
     return (
-        <div className={`message ${messageClass}`}>
-            <p>{createdAt}</p>
-            <p>{username}</p>
-            <p>{text}</p>
+        <div className={`messageWrapper ${messageClass}`}>
+            <div className="message">
+                <p className="messageInfo">{`${username} ${createdAt}`}</p>
+                <p className="text">{text}</p>
+            </div>
         </div>
     );
 };
