@@ -43,16 +43,16 @@ export default function SignUp() {
                 <div className="signupModal">
                     <button className="close-modal" onClick={updateSignUpModal}>&times;</button>
                     <div className="form-header">
-                        <h3>Sign Up</h3>
+                        <h2>Sign Up</h2>
                     </div>
                     <form onSubmit={signupFormSubmit}>
-                        <label htmlFor="username">Username: </label>
+                        <label htmlFor="username">Username:</label>
                         <input type="text" name="username" id="username" value={username} onChange={e => setUsername(e.target.value)} />
-                        <label htmlFor="email">Email: </label>
+                        <label htmlFor="email">Email:</label>
                         <input type="text" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
-                        <label htmlFor="password">Password: </label>
+                        <label htmlFor="password">Password:</label>
                         <input type="password" name="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
-                        <label htmlFor="confirmPassword">Confirm Password: </label>
+                        <label htmlFor="confirmPassword">Confirm Password:</label>
                         <input type="password" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
                         <p>{error ? error : '\u00A0'}</p>
                         <div>

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
-const SignupModalContext = React.createContext(false);
-const UpdateSignupModalContext = React.createContext();
+export const SignupModalContext = React.createContext(false);
+export const UpdateSignupModalContext = React.createContext();
 
 export const GetSignupModalContext = () => {
     return useContext(SignupModalContext);

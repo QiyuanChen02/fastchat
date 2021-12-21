@@ -37,12 +37,12 @@ export default function Login() {
                 <div className="loginModal">
                     <button className="close-modal" onClick={updateLoginModal}>&times;</button>
                     <div className="form-header">
-                        <h2>Log in</h2>
+                        <h2>Log In</h2>
                     </div>
                     <form onSubmit={loginFormSubmit}>
-                        <label htmlFor="email">Email: </label>
+                        <label htmlFor="email">Email:</label>
                         <input type="text" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
-                        <label htmlFor="password">Password: </label>
+                        <label htmlFor="password">Password:</label>
                         <input type="password" name="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
                         <p>{error ? error : '\u00A0'}</p>
                         <div>

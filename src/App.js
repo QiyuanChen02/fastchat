@@ -1,10 +1,9 @@
 import { Topbar, Landing, Info, Footer, MainChat, Selectchat } from "./components/index.js";
 import Login from "./authentication/Login.jsx";
 import SignUp from "./authentication/Signup.jsx";
-
 import { GetUserContext } from "./contexts/AuthenticationContext.jsx";
-import { useState, useEffect } from "react";
-import { userInfoListener } from "./database/users.js";
+import { useDocumentData } from "react-firebase-hooks/firestore"; 
+import { getUserRef } from "./database/users";
 
 function App() {
 
@@ -12,7 +11,7 @@ function App() {
   return (
     <div className={`app`}>
       <Topbar />
-      {user ? <ChatPage /> : <LandingPage />}
+      {user ? <ChatPage user={user}/> : <LandingPage />}
       <Footer />
     </div>
   );
@@ -29,25 +28,21 @@ function LandingPage() {
   );
 };
 
-function ChatPage() {
+function ChatPage({ user }) {
 
-  const user = GetUserContext();
-  const [userState, setUserState] = useState({
-    name: "",
-    chatroom: "main"
-  }); //maybe change all from null to main for nicer code
+  const userRef = getUserRef(user.uid);
+  const [userState, loading] = useDocumentData(userRef, { idField: "id" });
 
-  useEffect(() => {
-    const unsubscribe = userInfoListener(user.uid, setUserState);
-    return () => unsubscribe();
-  }, [user.uid]);
-
-  return (
-    <>
-      <MainChat {...userState} />
-      <Selectchat />
-    </>
-  )
+  if (!loading){
+    return (
+      <>
+        <MainChat {...userState} />
+        <Selectchat />
+      </>
+    )
+  } else {
+    return null;
+  }
 }
 
 export default App;

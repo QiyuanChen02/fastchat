@@ -1,4 +1,4 @@
-import { doc, setDoc, onSnapshot } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 const addUser = (id, username) => {
@@ -10,14 +10,11 @@ const addUser = (id, username) => {
     });
 }
 
-const userInfoListener = (uid, setUserState) => {
-    const unsubscribe = onSnapshot(doc(db, "users", uid), doc => {
-        setUserState(doc.data());
-    });
-    return unsubscribe;
+const getUserRef = (uid) => {
+    return doc(db, "users", uid);
 }
 
 export {
     addUser,
-    userInfoListener
+    getUserRef
 }

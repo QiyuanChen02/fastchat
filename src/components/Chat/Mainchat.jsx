@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { auth } from '../../firebase';
-import { addMessage, fetchMessagesFromChat } from '../../database/messages';
+import { addMessage, getMessageQuery } from '../../database/messages';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { getTime } from '../../helpers/helperfunctions';
 
-function MainChat({ name, chatroom: chatroomId }) {
+function MainChat({ name, chatroom }) {
 
-    const [messages, setMessages] = useState([]);
+    const q = getMessageQuery(chatroom);
+    const [messages] = useCollectionData(q, {idField: "id"});
     const [formValue, setFormValue] = useState("");
-
-    useEffect(() => {
-        const unsubscribe = fetchMessagesFromChat(chatroomId, setMessages);
-        return () => unsubscribe();
-    }, [chatroomId]);
     
     const sendMessage = (e) => {
         e.preventDefault();
         const message = formValue;
         setFormValue("");
-        addMessage(auth.currentUser.uid, name, chatroomId, message);
+        addMessage(auth.currentUser.uid, name, chatroom, message);
     }
 
     return (
         <div className="mainchat">
             <main>
-                {messages && messages.map(msg => <ChatMessage key={msg.id} {...msg} />)}
+                {messages && messages.map(msg => ({...msg, createdAt: getTime(msg.createdAt.toDate())})) //Converts stored data to a form which can be shown
+                                     .map(msg => <ChatMessage key={msg.id} {...msg} />)}
             </main>
             <form onSubmit={sendMessage}>
                 <input value={formValue} onChange={e => setFormValue(e.target.value)} />
