@@ -68,36 +68,51 @@ const leaveChatroom = async (uid, chatroomId) => {
 //leaves previous chatroom, then joins a chatroom if it's in awaitingchatrooms, otherwise create a new chatroom
 const findAChat = async (uid, chatroom) => {
 
-    if (chatroom !== "main") {
-        leaveChatroom(uid, chatroom);
+    try {
+        if (chatroom && chatroom !== "main") {
+            leaveChatroom(uid, chatroom);
+        }
+        const awaitingchatroomsRef = collection(db, "awaitingchatrooms");
+        const q = query(awaitingchatroomsRef, limit(1));
+        const snapshot = await getDocs(q);
+    
+        if (snapshot.empty) {
+            const chatroomId = await createChatroom(uid);
+            await addDoc(awaitingchatroomsRef, {
+                chatroomId: chatroomId
+            });
+        } else {
+            const requiredChatroom = snapshot.docs[0].data().chatroomId;
+            await joinChatroom(uid, requiredChatroom);
+            await deleteDoc(doc(db, "awaitingchatrooms", snapshot.docs[0].id));
+        }
+    } catch (e) {
+        console.log(e);
     }
-    const awaitingchatroomsRef = collection(db, "awaitingchatrooms");
-    const q = query(awaitingchatroomsRef, limit(1));
-    const snapshot = await getDocs(q);
 
-    if (snapshot.empty) {
-        const chatroomId = await createChatroom(uid);
-        await addDoc(awaitingchatroomsRef, {
-            chatroomId: chatroomId
-        });
-    } else {
-        const requiredChatroom = snapshot.docs[0].data().chatroomId;
-        await joinChatroom(uid, requiredChatroom);
-        await deleteDoc(doc(db, "awaitingchatrooms", snapshot.docs[0].id));
-    }
-}
-
-const goToMain = async (uid) => {
-    await setUserChatroom(uid, "main");
 }
 
 //returns user to the main chatroom
 const returnToSelection = async (uid, chatroomId) => {
 
-    if (chatroomId !== "main"){
-        await leaveChatroom(uid, chatroomId);
+    try {
+        if (chatroomId !== "main"){
+            await leaveChatroom(uid, chatroomId);
+        }
+        await setUserChatroom(uid, null);
+    } catch (e) {
+        console.log(e);
     }
-    await setUserChatroom(uid, null);
+    
+}
+
+const goToMain = async (uid) => {
+    try {
+        await setUserChatroom(uid, "main");
+    } catch (e) {
+        console.log(e);
+    }
+    
 }
 
 export {

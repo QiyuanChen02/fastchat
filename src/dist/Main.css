@@ -149,14 +149,6 @@ h1, h2, h3 {
   line-height: var(--heading-line-height);
 }
 
-h2 {
-  margin-bottom: var(--space-md);
-}
-
-h3 {
-  margin-bottom: var(--space-sm);
-}
-
 .messageWrapper {
   display: flex;
   padding: 0 var(--space-md);
@@ -179,7 +171,7 @@ h3 {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  max-width: calc(min(784px, 100%) * 0.6);
+  max-width: calc(calc(400px + 40vw) * 0.6);
   word-wrap: break-word;
 }
 .message .text {
@@ -189,7 +181,7 @@ h3 {
 }
 
 .loginModal, .signupModal {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -260,7 +252,7 @@ h3 {
 }
 
 .landing {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -334,18 +326,16 @@ h3 {
 }
 
 .mainchat {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 660px;
+  width: calc(400px + 40vw);
   z-index: 10;
   border-radius: var(--space-sm);
   background-color: var(--background-color-1);
   pointer-events: all;
   background-color: var(--background-color-1);
-  margin: auto;
-  width: 660px;
   border-radius: 1em;
 }
 @media (max-width: 768px) {
@@ -355,9 +345,31 @@ h3 {
     border-radius: 0;
   }
 }
+.mainchat header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--accent-color);
+  height: 7.5em;
+  border-radius: 1em 1em 0 0;
+  text-align: center;
+  padding: 0 var(--space-xxs);
+}
+.mainchat header button {
+  width: 6em;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.mainchat header button svg {
+  width: 4em;
+}
 .mainchat main {
-  width: 660px;
-  height: 600px;
+  height: 500px;
   overflow-y: scroll;
 }
 .mainchat main::-webkit-scrollbar {
@@ -371,27 +383,55 @@ h3 {
 }
 .mainchat form {
   display: flex;
-  padding: var(--space-sm);
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 5em;
+  padding: 0 var(--space-sm);
   background-color: var(--accent-color);
   border-radius: 0 0 1em 1em;
 }
 .mainchat form input {
-  width: 86%;
-  border-radius: 100em;
-  padding: var(--space-xxs);
-}
-.mainchat form input:focus {
-  outline-width: 0;
+  width: calc(calc(400px + 40vw) - 4em);
+  border-radius: 1em;
+  padding: 0 var(--space-sm);
+  border: none;
+  font-size: 1.6em;
+  height: 2em;
+  outline: none;
 }
 .mainchat form button {
-  width: 14%;
+  width: 4em;
   background-color: transparent;
+  padding: 0;
   border: none;
   cursor: pointer;
+  position: relative;
+}
+.mainchat form button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4em;
+}
+@media (max-width: 768px) {
+  .mainchat header {
+    border-radius: 0;
+  }
+  .mainchat main {
+    height: calc(100% - 12.5em);
+  }
+  .mainchat form {
+    border-radius: 0;
+  }
+  .mainchat form input {
+    width: calc(100% - 3em);
+  }
 }
 
 .selectchat {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -432,7 +472,7 @@ h3 {
   cursor: pointer;
   padding: var(--space-sm) var(--space-md);
   border-radius: 10em;
-  width: 11em;
+  width: 10.5em;
   height: calc(2em + 2 * var(--space-sm));
   color: var(--background-color-1);
   background-color: var(--accent-color);
@@ -449,7 +489,7 @@ h3 {
   cursor: pointer;
   padding: var(--space-sm) var(--space-md);
   border-radius: 10em;
-  width: 11em;
+  width: 10.5em;
   height: calc(2em + 2 * var(--space-sm));
   color: var(--accent-color);
   background-color: var(--background-color-1);

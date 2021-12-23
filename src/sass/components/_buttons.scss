@@ -1,4 +1,4 @@
-@mixin button($font-size, $height, $width, $inverted: false){
+@mixin button1($font-size, $height, $width, $inverted: false){
     display: block;
     border: 2px solid var(--accent-color);
     font-size: var(--text-#{$font-size});
@@ -22,4 +22,11 @@
     }
 }
 
-//This button is only for the submit button and hasn't been generalised yet
+@mixin button2($width){
+    width: $width;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}

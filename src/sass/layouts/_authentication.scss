@@ -43,7 +43,7 @@
             float: right;
             margin-top: var(--space-sm);
             text-align: center;
-            @include c.button(xl, 1.8em, 7em, false);
+            @include c.button1(xl, 1.8em, 7em, false);
         }
     }
 }

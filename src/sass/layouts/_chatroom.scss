@@ -3,15 +3,31 @@
 
 .mainchat {
 
-    @include c.modal(660px);
+    @include c.modal(a.$chat-width);
     background-color: var(--background-color-1);
-    margin: auto;
-    width: 660px;
     border-radius: 1em;
 
+    header {
+        @include a.flex(row, space-between, center);
+        background-color: var(--accent-color);
+        height: 7.5em;
+        border-radius: 1em 1em 0 0;
+        text-align: center;
+        padding: 0 var(--space-xxs);
+
+        button {
+
+            @include c.button2(6em);
+            overflow: hidden;
+            svg {
+                width: 4em;
+            }
+        }
+    }
+
     main {
-        width: 660px;
-        height: 600px;
+
+        height: 500px;
         overflow-y: scroll;
         &::-webkit-scrollbar {
             width: 0.35em;
@@ -28,26 +44,43 @@
     }
 
     form {
-        display: flex;
-        padding: var(--space-sm);
+        @include a.flex(row, space-evenly, center);
+        height: 5em;
+        padding: 0 var(--space-sm);
         background-color: var(--accent-color);
         border-radius: 0 0 1em 1em;
 
         input {
-            width: 86%;
-            border-radius: 100em;
-            padding: var(--space-xxs);
-
-            &:focus {
-                outline-width: 0;
-            }
+            width: calc(#{a.$chat-width} - 4em);
+            border-radius: 1em;
+            padding: 0 var(--space-sm);
+            border: none;
+            font-size: 1.6em;
+            height: 2em;
+            outline: none;
         }
 
         button {
-            width: 14%;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
+            @include c.button2(4em);
+            svg {
+                @include a.center();
+                width: 4em;
+            }
+        }
+    }
+
+    @include a.media("<=tablet"){
+        header {
+            border-radius: 0;
+        }
+        main {
+            height: calc(100% - 12.5em);
+        }
+        form {
+            border-radius: 0;
+            input {
+                width: calc(100% - 3em);
+            }
         }
     }
 }

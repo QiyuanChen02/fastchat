@@ -17,12 +17,12 @@
     }
     
     button {
-        @include c.button(md, 2em, 11em, false);
+        @include c.button1(md, 2em, 10.5em, false);
         margin-bottom: var(--space-sm);
     }
 
     button:nth-of-type(2) {
-        @include c.button(md, 2em, 11em, true);
+        @include c.button1(md, 2em, 10.5em, true);
     }
 
     svg {
