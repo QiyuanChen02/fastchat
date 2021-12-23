@@ -1,4 +1,4 @@
-@mixin button($font-size, $height, $inverted: false){
+@mixin button($font-size, $height, $width, $inverted: false){
     display: block;
     border: 1px solid var(--accent-color);
     font-size: var(--text-#{$font-size});
@@ -6,7 +6,7 @@
     cursor: pointer;
     padding: var(--space-sm) var(--space-md);
     border-radius: 10em;
-    width: fit-content;
+    width: $width;
     height: calc(#{$height} + 2 * var(--space-sm));
 
     @if $inverted {

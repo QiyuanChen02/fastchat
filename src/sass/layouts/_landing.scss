@@ -1,14 +1,33 @@
+@use "../abstracts" as a;
+@use "../components" as c;
+
 .landing {
-    background-color: red;
-    opacity: 0.05;
-}
 
-.info {
-    background-color: blue;
-    opacity: 0.05;
-}
+    @include c.modal(660px);
+    @include a.flex(column, center, center);
+    background-color: var(--background-color-1);
+    gap: var(--space-sm);
+    font-size: 1.6em;
 
-footer {
-    background-color: green;
-    opacity: 0.05;
+    header {
+        @include a.flex(row, center, center);
+        text-align: center;
+        gap: var(--space-sm)
+    }
+    
+    button:first-of-type {
+        @include c.button(md, 2em, 8em, true);
+        margin-bottom: var(--space-sm);
+    }
+
+    button:nth-of-type(2) {
+        @include c.button(md, 2em, 8em, false);
+    }
+
+    svg {
+        cursor: pointer;
+        width: 3em;
+        height: 3em;
+        fill: var(--text-color-1);
+    }
 }

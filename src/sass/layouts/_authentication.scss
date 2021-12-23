@@ -40,8 +40,9 @@
 
         button {
             float: right;
-            margin-top: var(--space-md);
-            @include c.button(xl, 1.8em, false);
+            margin-top: var(--space-sm);
+            text-align: center;
+            @include c.button(xl, 1.8em, 7em, false);
         }
     }
 }

@@ -10,9 +10,7 @@ function App() {
   const user = GetUserContext();
   return (
     <div className={`app`}>
-      <Topbar />
       {user ? <ChatPage user={user}/> : <LandingPage />}
-      <Footer />
     </div>
   );
 };
@@ -21,7 +19,6 @@ function LandingPage() {
   return (
     <>
       <Landing />
-      <Info />
       <Login />
       <SignUp />
     </>
