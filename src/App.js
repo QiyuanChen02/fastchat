@@ -37,7 +37,7 @@ function ChatPage({ user }) {
     return (
       <>
         <MainChat {...userState} />
-        <Selectchat />
+        <Selectchat {...userState}/>
       </>
     )
   } else {

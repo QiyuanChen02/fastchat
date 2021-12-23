@@ -14,7 +14,6 @@ export const GetLoginModalUpdateContext = () => {
 const LoginModalProvider = ({ children }) => {
     const [loginModal, setLoginModal] = useState(false);
 
-    //Edit this code to be easier to use
     const changeLoginModalStatus = () => {
         setLoginModal(loginModal => !loginModal);
     }

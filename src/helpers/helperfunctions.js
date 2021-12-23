@@ -10,8 +10,9 @@ const errorMessage = (err) => {
 }
 
 const getTime = (createdAt) => {
-    const minutes = createdAt.getMinutes().toString();
-    const hours = createdAt.getHours().toString();
+    const date = new Date(createdAt);
+    const minutes = date.getMinutes().toString();
+    const hours = date.getHours().toString();
 
     return `${hours.length === 1 ? "0" + hours : hours}:${minutes.length === 1 ? "0" + minutes : minutes}`
 }

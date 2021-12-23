@@ -1,21 +1,36 @@
 @use "../abstracts" as a;
+@use "../components" as c;
 
 .mainchat {
     display: flex;
     flex-direction: column;
-    background-color: rgb(132, 218, 218);
+    background-color: var(--background-color-1);
     margin: auto;
     width: a.$chat-width;
     max-height: 600px;
+    min-height: 300px;
     margin-top: var(--space-xxl);
+    box-shadow: 0 0 100px hsl(0, 0%, 0%, 0.3);
+    border-radius: 1em;
 
     main {
         overflow-y: scroll;
+        &::-webkit-scrollbar {
+            width: 0.25rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #1e1e24;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #6649b8;
+        }
     }
-    
+
     form {
         display: flex;
-        
+
         input {
             width: 80%;
             padding: var(--space-xs);
@@ -28,3 +43,8 @@
     }
 }
 
+.selectchat {
+    button {
+        @include c.button(md, 2em, true);
+    }
+}

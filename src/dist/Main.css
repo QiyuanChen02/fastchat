@@ -123,6 +123,8 @@ p {
   --text-color-1: black;
   --accent-color: hsl(204, 100%, 36%);
   --error-color: red;
+  --sent-chat-color: hsl(194, 100%, 67%);
+  --received-chat-color: hsl(0, 0%, 87%);
 }
 
 :root {
@@ -172,6 +174,7 @@ h3 {
   text-align: end;
 }
 .messageWrapper.sent .text {
+  background-color: var(--sent-chat-color);
   border-radius: 1em 0 1em 1em;
 }
 
@@ -183,9 +186,10 @@ h3 {
   width: -moz-fit-content;
   width: fit-content;
   max-width: calc(min(784px, 100%) * 0.6);
+  word-wrap: break-word;
 }
 .message .text {
-  background-color: green;
+  background-color: var(--received-chat-color);
   border-radius: 0 1em 1em 1em;
   padding: var(--space-sm) var(--space-md);
 }
@@ -340,14 +344,26 @@ footer {
 .mainchat {
   display: flex;
   flex-direction: column;
-  background-color: #84dada;
+  background-color: var(--background-color-1);
   margin: auto;
   width: min(784px, 100%);
   max-height: 600px;
+  min-height: 300px;
   margin-top: var(--space-xxl);
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+  border-radius: 1em;
 }
 .mainchat main {
   overflow-y: scroll;
+}
+.mainchat main::-webkit-scrollbar {
+  width: 0.25rem;
+}
+.mainchat main::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+.mainchat main::-webkit-scrollbar-thumb {
+  background: #6649b8;
 }
 .mainchat form {
   display: flex;
@@ -359,4 +375,23 @@ footer {
 }
 .mainchat form button {
   width: 20%;
+}
+
+.selectchat button {
+  display: block;
+  border: 1px solid var(--accent-color);
+  font-size: var(--text-md);
+  font-weight: bold;
+  cursor: pointer;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 10em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: calc(2em + 2 * var(--space-sm));
+  color: var(--accent-color);
+  background-color: var(--background-color-1);
+}
+.selectchat button:hover, .selectchat button:focus {
+  filter: brightness(90%);
 }/*# sourceMappingURL=main.css.map */

@@ -8,6 +8,7 @@
             text-align: end;
         }
         .text {
+            background-color: var(--sent-chat-color);
             border-radius: 1em 0 1em 1em
         }
     }
@@ -19,12 +20,12 @@
     margin: var(--space-sm) var(--space-md);
     width: fit-content;
     max-width: calc(#{a.$chat-width} * 0.6);
+    word-wrap: break-word;
 
     .text {
-        background-color: green;
+        background-color: var(--received-chat-color);
         border-radius: 0 1em 1em 1em;
         padding: var(--space-sm) var(--space-md);
-    }    
-
+    }
 }
 
