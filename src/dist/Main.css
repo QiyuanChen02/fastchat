@@ -76,6 +76,15 @@ select {
   }
 }
 :root {
+  --chat-width: calc(400px + 40vw);
+}
+@media (max-width: 768px) {
+  :root {
+    --chat-width: 100%;
+  }
+}
+
+:root {
   --font-primary: Verdana;
   --font-secondary: serif;
   --text-base-size: 1em;
@@ -171,7 +180,7 @@ h1, h2, h3 {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  max-width: calc(calc(400px + 40vw) * 0.6);
+  max-width: calc(var(--chat-width) * 0.75);
   word-wrap: break-word;
 }
 .message .text {
@@ -330,7 +339,7 @@ h1, h2, h3 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: calc(400px + 40vw);
+  width: var(--chat-width);
   z-index: 10;
   border-radius: var(--space-sm);
   background-color: var(--background-color-1);
@@ -351,7 +360,7 @@ h1, h2, h3 {
   justify-content: space-between;
   align-items: center;
   background-color: var(--accent-color);
-  height: 7.5em;
+  height: 8em;
   border-radius: 1em 1em 0 0;
   text-align: center;
   padding: 0 var(--space-xxs);
@@ -392,7 +401,7 @@ h1, h2, h3 {
   border-radius: 0 0 1em 1em;
 }
 .mainchat form input {
-  width: calc(calc(400px + 40vw) - 4em);
+  width: calc(var(--chat-width) - 4em);
   border-radius: 1em;
   padding: 0 var(--space-sm);
   border: none;
@@ -424,9 +433,6 @@ h1, h2, h3 {
   }
   .mainchat form {
     border-radius: 0;
-  }
-  .mainchat form input {
-    width: calc(100% - 3em);
   }
 }
 

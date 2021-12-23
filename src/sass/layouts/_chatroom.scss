@@ -3,14 +3,14 @@
 
 .mainchat {
 
-    @include c.modal(a.$chat-width);
+    @include c.modal(var(--chat-width));
     background-color: var(--background-color-1);
     border-radius: 1em;
 
     header {
         @include a.flex(row, space-between, center);
         background-color: var(--accent-color);
-        height: 7.5em;
+        height: 8em;
         border-radius: 1em 1em 0 0;
         text-align: center;
         padding: 0 var(--space-xxs);
@@ -51,7 +51,7 @@
         border-radius: 0 0 1em 1em;
 
         input {
-            width: calc(#{a.$chat-width} - 4em);
+            width: calc(var(--chat-width) - 4em);
             border-radius: 1em;
             padding: 0 var(--space-sm);
             border: none;
@@ -78,9 +78,6 @@
         }
         form {
             border-radius: 0;
-            input {
-                width: calc(100% - 3em);
-            }
         }
     }
 }

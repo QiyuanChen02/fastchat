@@ -69,27 +69,43 @@ const leaveChatroom = async (uid, chatroomId) => {
 const findAChat = async (uid, chatroom) => {
 
     try {
-        if (chatroom && chatroom !== "main") {
-            leaveChatroom(uid, chatroom);
-        }
-        const awaitingchatroomsRef = collection(db, "awaitingchatrooms");
-        const q = query(awaitingchatroomsRef, limit(1));
-        const snapshot = await getDocs(q);
-    
-        if (snapshot.empty) {
-            const chatroomId = await createChatroom(uid);
-            await addDoc(awaitingchatroomsRef, {
-                chatroomId: chatroomId
-            });
+        let canFindChat;
+        if (!chatroom) {
+            canFindChat = true;
         } else {
-            const requiredChatroom = snapshot.docs[0].data().chatroomId;
-            await joinChatroom(uid, requiredChatroom);
-            await deleteDoc(doc(db, "awaitingchatrooms", snapshot.docs[0].id));
+            const chatroomRef = doc(db, "chatrooms", chatroom);
+            const chatroomSnap = await getDoc(chatroomRef);
+            if (chatroomSnap.data().members.length > 1){
+                canFindChat = true;
+            } else {
+                canFindChat = false;
+            }
         }
+
+        if (canFindChat) {
+            if (chatroom && chatroom !== "main") {
+                leaveChatroom(uid, chatroom);
+            }
+            const awaitingchatroomsRef = collection(db, "awaitingchatrooms");
+            const q = query(awaitingchatroomsRef, limit(1));
+            const snapshot = await getDocs(q);
+        
+            //If no awaiting chatroom, then add a chatroom, otherwise join the chatroom listed in awaiting chatrooms
+            if (snapshot.empty) {
+                const chatroomId = await createChatroom(uid);
+                await addDoc(awaitingchatroomsRef, {
+                    chatroomId: chatroomId
+                });
+            } else {
+                const requiredChatroom = snapshot.docs[0].data().chatroomId;
+                await joinChatroom(uid, requiredChatroom);
+                await deleteDoc(doc(db, "awaitingchatrooms", snapshot.docs[0].id));
+            }
+        }
+        
     } catch (e) {
         console.log(e);
     }
-
 }
 
 //returns user to the main chatroom

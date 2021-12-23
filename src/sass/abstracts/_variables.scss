@@ -1,1 +1,8 @@
-$chat-width: calc(400px + 40vw);
+@use "breakpoints" as *;
+
+:root {
+    --chat-width: calc(400px + 40vw);
+    @include media("<=tablet"){
+        --chat-width: 100%;
+    }
+}
