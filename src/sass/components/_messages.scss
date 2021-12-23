@@ -2,6 +2,7 @@
 
 .messageWrapper {
     display: flex;
+    padding: 0 var(--space-md);
     &.sent {
         justify-content: flex-end;
         .messageInfo {
@@ -17,7 +18,7 @@
 .message {
     display: flex;
     flex-direction: column;
-    margin: var(--space-sm) var(--space-md);
+    margin: var(--space-sm) 0;
     width: fit-content;
     max-width: calc(#{a.$chat-width} * 0.6);
     word-wrap: break-word;

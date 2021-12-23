@@ -48,7 +48,6 @@ const deleteChatroom = async (chatroomId) => {
 const leaveChatroom = async (uid, chatroomId) => {
     
     const chatroomRef = doc(db, "chatrooms", chatroomId);
-    console.log("UID: ", uid);
     await updateDoc(chatroomRef, {
         members: arrayRemove(uid)
     });
@@ -67,37 +66,42 @@ const leaveChatroom = async (uid, chatroomId) => {
 }
 
 //leaves previous chatroom, then joins a chatroom if it's in awaitingchatrooms, otherwise create a new chatroom
-const findAChat = async (user, chatroomId) => {
+const findAChat = async (uid, chatroom) => {
 
-    if (chatroomId !== "main"){
-        await leaveChatroom(user.uid, chatroomId);
+    if (chatroom !== "main") {
+        leaveChatroom(uid, chatroom);
     }
-
     const awaitingchatroomsRef = collection(db, "awaitingchatrooms");
     const q = query(awaitingchatroomsRef, limit(1));
     const snapshot = await getDocs(q);
 
     if (snapshot.empty) {
-        const chatroomId = await createChatroom(user.uid);
+        const chatroomId = await createChatroom(uid);
         await addDoc(awaitingchatroomsRef, {
             chatroomId: chatroomId
         });
     } else {
         const requiredChatroom = snapshot.docs[0].data().chatroomId;
-        await joinChatroom(user.uid, requiredChatroom);
+        await joinChatroom(uid, requiredChatroom);
         await deleteDoc(doc(db, "awaitingchatrooms", snapshot.docs[0].id));
     }
 }
 
+const goToMain = async (uid) => {
+    await setUserChatroom(uid, "main");
+}
+
 //returns user to the main chatroom
-const returnToMain = async (user, chatroomId) => {
+const returnToSelection = async (uid, chatroomId) => {
+
     if (chatroomId !== "main"){
-        await leaveChatroom(user.uid, chatroomId);
-        await setUserChatroom(user.uid, "main");
+        await leaveChatroom(uid, chatroomId);
     }
+    await setUserChatroom(uid, null);
 }
 
 export {
     findAChat,
-    returnToMain
+    goToMain,
+    returnToSelection
 }

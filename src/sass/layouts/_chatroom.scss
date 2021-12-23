@@ -2,49 +2,52 @@
 @use "../components" as c;
 
 .mainchat {
-    display: flex;
-    flex-direction: column;
+
+    @include c.modal(660px);
     background-color: var(--background-color-1);
     margin: auto;
-    width: a.$chat-width;
-    max-height: 600px;
-    min-height: 300px;
-    margin-top: var(--space-xxl);
-    box-shadow: 0 0 100px hsl(0, 0%, 0%, 0.3);
+    width: 660px;
     border-radius: 1em;
 
     main {
+        width: 660px;
+        height: 600px;
         overflow-y: scroll;
         &::-webkit-scrollbar {
-            width: 0.25rem;
+            width: 0.35em;
         }
 
         &::-webkit-scrollbar-track {
-            background: #1e1e24;
+            background: var(--background-color-1);
         }
 
         &::-webkit-scrollbar-thumb {
-            background: #6649b8;
+            background: var(--text-color-1);
         }
+
     }
 
     form {
         display: flex;
+        padding: var(--space-sm);
+        background-color: var(--accent-color);
+        border-radius: 0 0 1em 1em;
 
         input {
-            width: 80%;
-            padding: var(--space-xs);
-            border: 1px solid black;
+            width: 86%;
+            border-radius: 100em;
+            padding: var(--space-xxs);
+
+            &:focus {
+                outline-width: 0;
+            }
         }
 
         button {
-            width: 20%;
+            width: 14%;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
         }
-    }
-}
-
-.selectchat {
-    button {
-        @include c.button(md, 2em, true);
     }
 }

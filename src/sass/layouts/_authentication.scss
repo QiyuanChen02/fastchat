@@ -3,6 +3,7 @@
 
 .loginModal, .signupModal {
     @include c.modal(660px);
+    padding: var(--space-lg);
 
     .close-modal {
         position: absolute;

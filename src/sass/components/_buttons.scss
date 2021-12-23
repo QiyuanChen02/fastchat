@@ -1,6 +1,6 @@
 @mixin button($font-size, $height, $width, $inverted: false){
     display: block;
-    border: 1px solid var(--accent-color);
+    border: 2px solid var(--accent-color);
     font-size: var(--text-#{$font-size});
     font-weight: bold;
     cursor: pointer;

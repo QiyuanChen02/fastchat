@@ -17,7 +17,7 @@ export default function SignUp() {
     const signUp = async (email, password) => {
         try {
             const cred = await createUserWithEmailAndPassword(auth, email, password);
-            addUser(cred.user.uid, username); //Still need to add to database (maybe in another folder?)
+            addUser(cred.user.uid, username);
             updateSignUpModal();
         } catch (e){
             console.log("🚀 ~ file: Signup.jsx ~ line 17 ~ signUp ~ e", e.code);
@@ -39,29 +39,26 @@ export default function SignUp() {
 
     if (signUpModal){
         return (
-            <>
-                <div className="signupModal">
-                    <button className="close-modal" onClick={updateSignUpModal}>&times;</button>
-                    <div className="form-header">
-                        <h2>Sign Up</h2>
-                    </div>
-                    <form onSubmit={signupFormSubmit}>
-                        <label htmlFor="username">Username:</label>
-                        <input type="text" name="username" id="username" value={username} onChange={e => setUsername(e.target.value)} />
-                        <label htmlFor="email">Email:</label>
-                        <input type="text" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
-                        <label htmlFor="password">Password:</label>
-                        <input type="password" name="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
-                        <label htmlFor="confirmPassword">Confirm Password:</label>
-                        <input type="password" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-                        <p>{error ? error : '\u00A0'}</p>
-                        <div>
-                            <button type="submit">Submit</button>
-                        </div>
-                    </form>
+            <section className="signupModal">
+                <button className="close-modal" onClick={updateSignUpModal}>&times;</button>
+                <div className="form-header">
+                    <h2>Sign Up</h2>
                 </div>
-                <div className="overlay" onClick={updateSignUpModal}></div>
-            </>
+                <form onSubmit={signupFormSubmit}>
+                    <label htmlFor="username">Username:</label>
+                    <input type="text" name="username" id="username" value={username} onChange={e => setUsername(e.target.value)} />
+                    <label htmlFor="email">Email:</label>
+                    <input type="text" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)} />
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" name="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
+                    <label htmlFor="confirmPassword">Confirm Password:</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                    <p>{error ? error : '\u00A0'}</p>
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </section>
         )
     } else {
         return null

@@ -6,7 +6,7 @@ const addUser = (id, username) => {
     console.log("🚀 ~ file: users.js ~ line 5 ~ addUser ~ userRef", userRef);
     setDoc(userRef, {
         name: username,
-        chatroom: "main"
+        chatroom: null
     });
 }
 

@@ -1,7 +1,7 @@
 @use "../abstracts" as a;
 @use "../components" as c;
 
-.landing {
+.selectchat {
 
     @include c.modal(660px);
     @include a.flex(column, center, center);
@@ -16,13 +16,13 @@
         gap: var(--space-sm)
     }
     
-    button:first-of-type {
-        @include c.button(md, 2em, 8em, true);
+    button {
+        @include c.button(md, 2em, 11em, false);
         margin-bottom: var(--space-sm);
     }
 
     button:nth-of-type(2) {
-        @include c.button(md, 2em, 8em, false);
+        @include c.button(md, 2em, 11em, true);
     }
 
     svg {

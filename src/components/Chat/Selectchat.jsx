@@ -1,20 +1,26 @@
-import React from 'react'
-import { GetUserContext } from '../../contexts/AuthenticationContext';
-import { findAChat, returnToMain } from "../../database/chatrooms";
+import { signOut } from 'firebase/auth';
+import { findAChat, goToMain } from "../../database/chatrooms";
+import { auth } from '../../firebase';
+import Logo from '../Landing/Logo';
 
-function Selectchat({ chatroom }) {
-
-    const user = GetUserContext();
+function Selectchat({ uid, chatroom }) {
 
     return (
-        <div className="selectchat">
-            <button onClick={() => findAChat(user, chatroom)}>Find own chat</button>
-            <button onClick={() => returnToMain(user, chatroom)}>Return to main</button>
-        </div>
+        <section className="selectchat">
+            <header>
+                <Logo />
+                <h1>Speed Chat</h1>
+            </header>
+            <nav>
+                <button onClick={() => goToMain(uid)}>Main Chat</button>
+                <button onClick={() => findAChat(uid, chatroom)}>Random Chat</button>
+                <button onClick={() => signOut(auth)}>Sign Out</button>
+            </nav>   
+        </section>
     )
 }
 
-export default Selectchat
+export default Selectchat;
 
 //When return to main
 //Have user chatroom set to main
