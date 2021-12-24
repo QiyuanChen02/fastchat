@@ -29,4 +29,9 @@
     border: none;
     cursor: pointer;
     position: relative;
+    color: var(--background-color-1);
+
+    &:hover, &:focus {
+        filter: brightness(90%);
+    }
 }

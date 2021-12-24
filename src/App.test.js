@@ -3,8 +3,8 @@ import App from './App';
 
 test('renders login and signup button', () => {
   render(<App />);
-  const loginElement = screen.getByText(/login/i);
+  const loginElement = screen.getByRole("button", { name: /log in/i });
   expect(loginElement).toBeVisible();
-  const signupElement = screen.getByText(/sign up/i);
+  const signupElement = screen.getByRole("button", { name: /sign up/i });
   expect(signupElement).toBeVisible();
 });

@@ -80,7 +80,7 @@ select {
 }
 @media (max-width: 768px) {
   :root {
-    --chat-width: 100%;
+    --chat-width: 100vw;
   }
 }
 
@@ -160,7 +160,7 @@ h1, h2, h3 {
 
 .messageWrapper {
   display: flex;
-  padding: 0 var(--space-md);
+  padding: 0 var(--space-lg);
 }
 .messageWrapper.sent {
   justify-content: flex-end;
@@ -172,11 +172,22 @@ h1, h2, h3 {
   background-color: var(--sent-chat-color);
   border-radius: 1em 0 1em 1em;
 }
+.messageWrapper.info {
+  justify-content: center;
+}
+.messageWrapper.info .messageInfo {
+  text-align: center;
+}
+.messageWrapper.info .text, .messageWrapper.info .messageInfo {
+  background-color: transparent;
+  padding: 0;
+  color: #616161;
+}
 
 .message {
   display: flex;
   flex-direction: column;
-  margin: var(--space-sm) 0;
+  margin: var(--space-xs) 0;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -200,6 +211,11 @@ h1, h2, h3 {
   background-color: var(--background-color-1);
   pointer-events: all;
   padding: var(--space-lg);
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -70%);
+  transition: opacity 0.4s, transform 0.4s;
 }
 @media (max-width: 768px) {
   .loginModal, .signupModal {
@@ -207,6 +223,12 @@ h1, h2, h3 {
     height: 100%;
     border-radius: 0;
   }
+}
+.loginModal.active, .signupModal.active {
+  display: block;
+  opacity: 1;
+  pointer-events: all;
+  transform: translate(-50%, -50%);
 }
 .loginModal .close-modal, .signupModal .close-modal {
   position: absolute;
@@ -360,10 +382,14 @@ h1, h2, h3 {
   justify-content: space-between;
   align-items: center;
   background-color: var(--accent-color);
+  color: var(--background-color-1);
   height: 8em;
   border-radius: 1em 1em 0 0;
   text-align: center;
   padding: 0 var(--space-xxs);
+}
+.mainchat header h2 {
+  font-size: calc(0.03 * var(--chat-width) + 1.5em);
 }
 .mainchat header button {
   width: 6em;
@@ -372,7 +398,11 @@ h1, h2, h3 {
   border: none;
   cursor: pointer;
   position: relative;
+  color: var(--background-color-1);
   overflow: hidden;
+}
+.mainchat header button:hover, .mainchat header button:focus {
+  filter: brightness(90%);
 }
 .mainchat header button svg {
   width: 4em;
@@ -416,6 +446,10 @@ h1, h2, h3 {
   border: none;
   cursor: pointer;
   position: relative;
+  color: var(--background-color-1);
+}
+.mainchat form button:hover, .mainchat form button:focus {
+  filter: brightness(90%);
 }
 .mainchat form button svg {
   position: absolute;
@@ -429,7 +463,7 @@ h1, h2, h3 {
     border-radius: 0;
   }
   .mainchat main {
-    height: calc(100% - 12.5em);
+    height: calc(100% - 13em);
   }
   .mainchat form {
     border-radius: 0;

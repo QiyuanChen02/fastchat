@@ -5,6 +5,19 @@
     @include c.modal(660px);
     padding: var(--space-lg);
 
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -70%);
+    transition: opacity 0.4s, transform 0.4s;
+
+    &.active {
+        display: block;
+        opacity: 1;
+        pointer-events: all;
+        transform: translate(-50%, -50%);
+    }
+
     .close-modal {
         position: absolute;
         top: var(--space-sm);

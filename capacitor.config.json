@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.app",
+  "appName": "Speed Chat",
+  "webDir": "build",
+  "bundledWebRuntime": false
+}

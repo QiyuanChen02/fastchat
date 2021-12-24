@@ -45,10 +45,10 @@ test("Modal closes when x clicked", () => {
     expect(titleElement).toBeNull;
 });
 
-test("Modal closes when submit clicked", () => {
-    render(<MockLogin />);
-    const submitElement = screen.getByText(/Submit/i);
-    fireEvent.click(submitElement);
-    const titleElement = screen.queryByText("Log in");
-    expect(titleElement).toBeNull;
-});
+// test("Modal closes when submit clicked", () => {
+//     render(<MockLogin />);
+//     const submitElement = screen.getByText(/Submit/i);
+//     fireEvent.click(submitElement);
+//     const titleElement = screen.queryByText("Log in");
+//     expect(titleElement).toBeNull;
+// });

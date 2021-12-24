@@ -2,7 +2,7 @@
 
 .messageWrapper {
     display: flex;
-    padding: 0 var(--space-md);
+    padding: 0 var(--space-lg);
     &.sent {
         justify-content: flex-end;
         .messageInfo {
@@ -13,12 +13,24 @@
             border-radius: 1em 0 1em 1em
         }
     }
+
+    &.info {
+        justify-content: center;
+        .messageInfo {
+            text-align: center;
+        }
+        .text, .messageInfo {
+            background-color: transparent;
+            padding: 0;
+            color: rgb(97, 97, 97);
+        }
+    }
 }
 
 .message {
     display: flex;
     flex-direction: column;
-    margin: var(--space-sm) 0;
+    margin: var(--space-xs) 0;
     width: fit-content;
     max-width: calc(var(--chat-width) * 0.75);
     word-wrap: break-word;

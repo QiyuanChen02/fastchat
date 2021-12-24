@@ -2,7 +2,13 @@ import { auth } from "../../firebase";
 import { getTime } from "../../helpers/helperfunctions";
 
 function ChatMessage({ uid, text, createdAt, username }) {
-    const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
+
+    let messageClass;
+    if (!username) {
+        messageClass = "info"
+    } else {
+        messageClass = uid === auth.currentUser.uid ? "sent" : "received";
+    }
 
     return (
         <div className={`messageWrapper ${messageClass}`}>

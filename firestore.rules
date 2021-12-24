@@ -11,29 +11,30 @@ service cloud.firestore {
     }
 
     function isChatRoomMember(chatroomId) {
-        return (request.auth.uid in get(/databases/$(database)/documents/chatrooms/$(chatroomId)).data.members) || chatroomId == "main";
+      return (request.auth.uid in get(/databases/$(database)/documents/chatrooms/$(chatroomId)).data.members) || chatroomId == "main";
     }
 
     match /{document=**} {
-      allow read, write: if true;
+      allow read, write: if false;
     }
     
     match /users/{userId}{
-      allow read: if isOwner(userId);
+      allow read: if isSignedIn() && isOwner(userId);
       allow write: if isSignedIn();
     }
     
     match /chatrooms/{chatroomId}{
-    	allow read: if isChatRoomMember(chatroomId) && isSignedIn();
-      allow write: if true;
+    	allow read: if isSignedIn() && isChatRoomMember(chatroomId);
+      allow write: if isSignedIn();
 
       match /messages/{messageId}{
-        allow read, write: if isChatRoomMember(chatroomId) && isSignedIn();
+        allow read: if isSignedIn() && isChatRoomMember(chatroomId);
+        allow write: if isSignedIn() && isChatRoomMember(chatroomId) && request.resource.data.uid == request.auth.uid;
       }
     }
 
     match /awaitingchatrooms/{awaitingchatroomId}{
-      allow read, write: if isSignedIn() && isChatRoomMember(awaitingchatroomId);
+      allow read, write: if isSignedIn();
     }
   }
 }

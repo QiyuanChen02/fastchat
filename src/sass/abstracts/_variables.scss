@@ -3,6 +3,6 @@
 :root {
     --chat-width: calc(400px + 40vw);
     @include media("<=tablet"){
-        --chat-width: 100%;
+        --chat-width: 100vw;
     }
 }

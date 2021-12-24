@@ -15,7 +15,7 @@ function Landing() {
             </header>
             
             <nav>
-                <button onClick={toggleLoginModal} tabIndex={0}>Login</button>
+                <button onClick={toggleLoginModal} tabIndex={0}>Log In</button>
                 <button onClick={toggleSignupModal} tabIndex={0}>Sign Up</button>
             </nav>
         </section>

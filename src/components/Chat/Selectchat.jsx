@@ -3,7 +3,7 @@ import { findAChat, goToMain } from "../../database/chatrooms";
 import { auth } from '../../firebase';
 import Logo from '../Landing/Logo';
 
-function Selectchat({ uid, chatroom }) {
+function Selectchat({ uid, chatroom, name }) {
 
     return (
         <section className="selectchat">
@@ -13,7 +13,7 @@ function Selectchat({ uid, chatroom }) {
             </header>
             <nav>
                 <button onClick={() => goToMain(uid)}>Main Chat</button>
-                <button onClick={() => findAChat(uid, chatroom)}>Random Chat</button>
+                <button onClick={() => findAChat(uid, chatroom, name)}>Random Chat</button>
                 <button onClick={() => signOut(auth)}>Sign Out</button>
             </nav>   
         </section>
