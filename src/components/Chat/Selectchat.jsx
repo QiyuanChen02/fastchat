@@ -9,7 +9,7 @@ function Selectchat({ uid, chatroom, name }) {
         <section className="selectchat">
             <header>
                 <Logo />
-                <h1>Speed Chat</h1>
+                <h1>Fast Chat</h1>
             </header>
             <nav>
                 <button onClick={() => goToMain(uid)}>Main Chat</button>

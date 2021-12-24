@@ -31,7 +31,7 @@
     position: relative;
     color: var(--background-color-1);
 
-    &:hover, &:focus {
+    &:hover {
         filter: brightness(90%);
     }
 }

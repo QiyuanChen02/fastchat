@@ -1,4 +1,4 @@
-import { doc, updateDoc, collection, addDoc, arrayUnion, query, limit, deleteDoc, getDocs, arrayRemove, getDoc, where } from "firebase/firestore";
+import { doc, updateDoc, collection, addDoc, arrayUnion, query, limit, deleteDoc, getDocs, arrayRemove, where } from "firebase/firestore";
 import { db } from "../firebase";
 import { addMessage } from "./messages";
 
@@ -16,7 +16,7 @@ const setUserChatroom = async (uid, chatroomId) => {
 }
 
 //adds a chatroom with that user as a memeber and returns the id of that chatroom
-const createChatroom = async (uid) => {
+const createChatroom = async (uid, username) => {
 
     try {
         const chatroomsRef = collection(db, "chatrooms");
@@ -25,7 +25,7 @@ const createChatroom = async (uid) => {
         });
         const newChatroomId = docRef.id;
         await setUserChatroom(uid, newChatroomId);
-        addMessage(uid, newChatroomId, "You created a new chat! Waiting for another person to join...");
+        addMessage(uid, newChatroomId, `${username} has created a new chat! Waiting for another person to join...`);
         return newChatroomId;
     } catch (e) {
         console.log(e);
@@ -79,7 +79,7 @@ const leaveChatroom = async (uid, chatroomId, username) => {
         // }
 
         const awaitingchatroomsRef = collection(db, "awaitingchatrooms");
-        const q = query(awaitingchatroomsRef, where("chatroomId", "==", chatroomId));
+        const q = query(awaitingchatroomsRef, where("chatroomId", "==", chatroomId), limit(1));
         const snapshot = await getDocs(q);
         if (snapshot.docs[0]){
             deleteDoc(doc(db, "awaitingchatrooms", snapshot.docs[0].id));
@@ -94,38 +94,23 @@ const leaveChatroom = async (uid, chatroomId, username) => {
 const findAChat = async (uid, chatroom, username) => {
 
     try {
-        let canFindChat;
-        if (!chatroom || chatroom === "main") {
-            canFindChat = true;
-        } else {
-            const chatroomRef = doc(db, "chatrooms", chatroom);
-            const chatroomSnap = await getDoc(chatroomRef);
-            if (chatroomSnap.data().members.length > 1){
-                canFindChat = true;
-            } else {
-                canFindChat = false;
-            }
+        if (chatroom && chatroom !== "main") {
+            await leaveChatroom(uid, chatroom, username);
         }
-
-        if (canFindChat) {
-            if (chatroom && chatroom !== "main") {
-                leaveChatroom(uid, chatroom, username);
-            }
-            const awaitingchatroomsRef = collection(db, "awaitingchatrooms");
-            const q = query(awaitingchatroomsRef, limit(1));
-            const snapshot = await getDocs(q);
-        
-            //If no awaiting chatroom, then add a chatroom, otherwise join the chatroom listed in awaiting chatrooms
-            if (snapshot.empty) {
-                const chatroomId = await createChatroom(uid);
-                await addDoc(awaitingchatroomsRef, {
-                    chatroomId: chatroomId
-                });
-            } else {
-                const requiredChatroom = snapshot.docs[0].data().chatroomId;
-                await joinChatroom(uid, requiredChatroom, username);
-                await deleteDoc(doc(db, "awaitingchatrooms", snapshot.docs[0].id));
-            }
+        const awaitingchatroomsRef = collection(db, "awaitingchatrooms");
+        const q = query(awaitingchatroomsRef, limit(1));
+        const snapshot = await getDocs(q);
+    
+        //If no awaiting chatroom, then add a chatroom, otherwise join the chatroom listed in awaiting chatrooms
+        if (snapshot.empty) {
+            const chatroomId = await createChatroom(uid, username);
+            await addDoc(awaitingchatroomsRef, {
+                chatroomId: chatroomId
+            });
+        } else {
+            const requiredChatroom = snapshot.docs[0].data().chatroomId;
+            await joinChatroom(uid, requiredChatroom, username);
+            await deleteDoc(doc(db, "awaitingchatrooms", snapshot.docs[0].id));
         }
         
     } catch (e) {

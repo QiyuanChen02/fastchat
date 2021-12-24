@@ -16,7 +16,7 @@ const addMessage = async (uid, chatroomId, message, username = "") => {
 const getMessageQuery = (chatroomId) => {
     const chatroomRef = doc(db, "chatrooms", chatroomId);
     const messagesRef = collection(chatroomRef, "messages");
-    return query(messagesRef, orderBy("createdAt", "asc"), limit(25));
+    return query(messagesRef, orderBy("createdAt", "asc"), limit(20));
 }
 
 export {
