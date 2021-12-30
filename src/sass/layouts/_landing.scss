@@ -8,12 +8,16 @@
     background-color: var(--background-color-1);
     gap: var(--space-sm);
     font-size: 1.6em;
-    padding: var(--space-lg);
+    padding: var(--space-lg) var(--space-md);
 
     header {
         @include a.flex(row, center, center);
         text-align: center;
-        gap: var(--space-sm)
+        gap: var(--space-sm);
+
+        @include a.media("<=phone"){
+            width: 5em;
+        }
     }
     
     button:first-of-type {

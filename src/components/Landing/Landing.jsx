@@ -11,7 +11,9 @@ function Landing() {
         <section className="landing">
             <header>
                 <Logo />
-                <h1>Fast Chat</h1>
+                <div>
+                    <h1>Fast Chat</h1>
+                </div>  
             </header>
             
             <nav>

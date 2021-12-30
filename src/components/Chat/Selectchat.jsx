@@ -9,13 +9,16 @@ function Selectchat({ uid, chatroom, name }) {
         <section className="selectchat">
             <header>
                 <Logo />
-                <h1>Fast Chat</h1>
+                <div>
+                    <h1>Fast Chat</h1>
+                </div>
             </header>
             <nav>
                 <button onClick={() => goToMain(uid)}>Main Chat</button>
                 <button onClick={() => findAChat(uid, chatroom, name)}>Random Chat</button>
                 <button onClick={() => signOut(auth)}>Sign Out</button>
             </nav>   
+            <p>Website by <a href="https://qchen.netlify.app">Qiyuan Chen</a></p>
         </section>
     )
 }

@@ -211,7 +211,6 @@ h1, h2, h3 {
   background-color: var(--background-color-1);
   pointer-events: all;
   padding: var(--space-lg);
-  display: none;
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, -70%);
@@ -225,7 +224,6 @@ h1, h2, h3 {
   }
 }
 .loginModal.active, .signupModal.active {
-  display: block;
   opacity: 1;
   pointer-events: all;
   transform: translate(-50%, -50%);
@@ -299,7 +297,7 @@ h1, h2, h3 {
   background-color: var(--background-color-1);
   gap: var(--space-sm);
   font-size: 1.6em;
-  padding: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
 }
 @media (max-width: 824px) {
   .landing {
@@ -315,6 +313,11 @@ h1, h2, h3 {
   align-items: center;
   text-align: center;
   gap: var(--space-sm);
+}
+@media (max-width: 424px) {
+  .landing header {
+    width: 5em;
+  }
 }
 .landing button:first-of-type {
   display: block;
@@ -487,7 +490,7 @@ h1, h2, h3 {
   background-color: var(--background-color-1);
   gap: var(--space-sm);
   font-size: 1.6em;
-  padding: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
 }
 @media (max-width: 824px) {
   .selectchat {
@@ -503,6 +506,11 @@ h1, h2, h3 {
   align-items: center;
   text-align: center;
   gap: var(--space-sm);
+}
+@media (max-width: 424px) {
+  .selectchat header {
+    width: 5em;
+  }
 }
 .selectchat button {
   display: block;
@@ -542,4 +550,7 @@ h1, h2, h3 {
   width: 3em;
   height: 3em;
   fill: var(--text-color-1);
+}
+.selectchat p {
+  font-size: 0.6em;
 }/*# sourceMappingURL=main.css.map */
