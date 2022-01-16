@@ -1,25 +1,29 @@
 import { db } from "../firebase";
-import { doc, addDoc, collection, query, orderBy, limit } from "firebase/firestore";
+import {
+	doc,
+	addDoc,
+	collection,
+	query,
+	orderBy,
+	limit,
+} from "firebase/firestore";
 
 const addMessage = async (uid, chatroomId, message, username = "") => {
-    const chatroom = doc(db, "chatrooms", chatroomId);
-    const messagesRef = collection(chatroom, "messages");
+	const chatroom = doc(db, "chatrooms", chatroomId);
+	const messagesRef = collection(chatroom, "messages");
 
-    await addDoc(messagesRef, {
-        text: message,
-        createdAt: Date.now(),
-        uid,
-        username,
-    });
-}
+	await addDoc(messagesRef, {
+		text: message,
+		createdAt: Date.now(),
+		uid,
+		username,
+	});
+};
 
 const getMessageQuery = (chatroomId) => {
-    const chatroomRef = doc(db, "chatrooms", chatroomId);
-    const messagesRef = collection(chatroomRef, "messages");
-    return query(messagesRef, orderBy("createdAt", "asc"), limit(20));
-}
+	const chatroomRef = doc(db, "chatrooms", chatroomId);
+	const messagesRef = collection(chatroomRef, "messages");
+	return query(messagesRef, orderBy("createdAt", "desc"), limit(20));
+};
 
-export {
-    addMessage,
-    getMessageQuery
-}
+export { addMessage, getMessageQuery };
